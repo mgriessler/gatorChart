@@ -1,7 +1,7 @@
 #include "paralellogram.h"
 #include <QtWidgets>
 
-Parallo::Parallo(const QColor &color, int x, int y)
+Parallel::Parallel(const QColor &color, int x, int y)
 {
     this->x = x;
     this->y = y;
@@ -12,27 +12,23 @@ Parallo::Parallo(const QColor &color, int x, int y)
     setAcceptHoverEvents(true);
 }
 
-QPolygonF Parallo::boundingParallo() const
+QRectF Parallel::boundingRect() const
 {
 //0,0,110,70 ???
-    return QPolygonF(0, 0, 110, 70);
+    return QRectF(0, 0, 110, 70);
 }
-
-QPainterPath Parallo::shape() const
+QPainterPath Parallel::shape() const
 {
     QPainterPath path;
-    //14,14,82,742 ???
-    //path.addParallo(14, 14, 82, 42);
-    painter->drawLine(0, 0, 0, 50);
-    painter->drawLine(0, 50, 50, 20);
-    painter->drawLine(50, 20, 50, 0);
-    painter->drawLine(50, 0, 0, 0);
+    path.addPolygon()
+    path.addRect(14, 14, 82, 42);
+    path.addRect(0, 0, 130, 80);
     return path;
 }
 
-void Parallo::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void Parallel::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    Q_UNUSED(widget);
+       Q_UNUSED(widget);
 
     QColor fillColor = (option->state & QStyle::State_Selected) ? color.dark(150) : color;
     if (option->state & QStyle::State_MouseOver)
@@ -46,17 +42,38 @@ void Parallo::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
     pen.setWidth(width);
     QBrush b = painter->brush();
-    painter->setBrush(QBrush(fillColor.dark(option->state & QStyle::State_Sunken ? 120 : 100)));
+    painter->setBrush(QBrush(fillColor.dark(option->state & QStyle::State_Sunken ? 120 : 100)));    
+    
+    //painter->drawRect(QRect(1, 1, 100, 60));
+    //commented out
+    //painter->setBrush(b);
 
-    painter->drawParallo(QParallo(14, 14, 79, 39));
-    painter->setBrush(b);
+    painter->setPen(QPen(Qt::black, 1));
 
-    painter->setPen(QPen(Qt::gray, 1));
-    painter->drawLine(15, 54, 94, 54);
-    painter->drawLine(94, 53, 94, 15);
-    painter->setPen(QPen(Qt::black, 0));
+
+    //added by me (Dennis
+
+    QBrush fillbrush;
+    fillbrush.setColor(Qt::blue);
+    fillbrush.setStyle(Qt::SolidPattern);
+
+
+    //Make trapezoid
+    QPolygon poly;
+    poly << QPoint(20,35);      //A             A->B->C->D
+    poly << QPoint(110,35);     //B
+    poly << QPoint(90,1);       //C
+    poly << QPoint(1,1);        //D
+
+    painter->drawPolygon(poly);
+
+    QPainterPath p;
+    p.addRegion(poly);
+    painter->fillPath(p,fillbrush);
+
 
     /*
+    //painter->drawLine(15, 54, 94, 54);
     QFont font("Times", 10);
     font.setStyleStrategy(QFont::ForceOutline);
     painter->setFont(font);
@@ -67,13 +84,13 @@ void Parallo::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     */
 }
 
-void Parallo::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void Parallel::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mousePressEvent(event);
     update();
 }
 
-void Parallo::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void Parallel::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if (event->modifiers() & Qt::ShiftModifier) {
         stuff << event->pos();
@@ -83,7 +100,7 @@ void Parallo::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsItem::mouseMoveEvent(event);
 }
 
-void Parallo::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void Parallel::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseReleaseEvent(event);
     update();
