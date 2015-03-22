@@ -1,6 +1,8 @@
-#include "dimond.h"
+#include "diamond.h"
 
-Dimond::Dimond(const QColor &color, int x, int y)
+#include <QtWidgets>
+
+Diamond::Dimond(const QColor &color, int x, int y)
 {
 
     this -> x = x;
@@ -13,25 +15,24 @@ Dimond::Dimond(const QColor &color, int x, int y)
 
 }
 
-QPolygonF Parallo::boundingParallo() const
+QRectF Diamond ::boundingRect() const
 {
-//0,0,110,70 ???
-return QPolygonF(0, 0, 110, 70);
+    //window location
+    return QRectF(0, 0, 110, 70);
+    
 }
 
 
-QPainterPath Dimond::shape() const
+QPainterPath Diamond::shape() const
 {
      QPainterPath path;
-     painter->drawLine(50, 0, 0, 50);
-     painter->drawLine(0, 50, 50, 100);
-     painter->drawLine(50, 100, 100, 50);
-     painter->drawLine(100, 50, 50, 0);
+     path.addRect(14, 14, 82, 42);
+     path.addRect(0, 0, 130, 80);
      return path;
 }
 
 
-void Dimond::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void Diamond::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
      Q_UNUSED(widget);
 
@@ -52,24 +53,33 @@ void Dimond::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
      painter->setBrush(QBrush(fillColor.dark(option->state & QStyle::State_Sunken ? 120 : 100)));
 
 
-     painter->drawDimond(QRect(14, 14, 79, 39));
-     painter->setBrush(b);
+     painter->setPen(QPen(Qt::black, 1));
+
+     QBrush fillbrush;
+     fillbrush.setColor(Qt::blue);
+     fillbrush.setStyle(Qt::SolidPattern);
+
+    QPolygon poly;
+    poly << QPoint(50,1);
+    poly << QPoint(100,50);
+    poly << QPoint(50,100);
+    poly << QPoint(50,1);
+
+    painter->drawPolygon(poly);
+
+    QPainterPath p;
+    p.addRegion(poly);
+    painter->fillPath(p,fillbrush);
 
 
-     painter->setPen(QPen(Qt::gray, 1));
-     painter->drawLine(15, 54, 94, 54);
-     painter->drawLine(94, 53, 94, 15);
-     painter->setPen(QPen(Qt::black, 0));
-
-
-void Dimond::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void Diamond::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
      QGraphicsItem::mousePressEvent(event);
      update();
 }
 
 
-void Dimond::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void Diamond::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
      if (event->modifiers() & Qt::ShiftModifier) {
          stuff << event->pos();
@@ -80,7 +90,7 @@ void Dimond::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
  }
 
 
- void Square::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+ void Diamond::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
      QGraphicsItem::mouseReleaseEvent(event);
      update();
