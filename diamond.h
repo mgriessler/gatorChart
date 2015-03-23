@@ -4,7 +4,7 @@
 #include <QColor>
 #include <QGraphicsItem>
 
-class Dimond : public QGraphicsItem
+class Diamond : public QGraphicsItem
 {
 public:
     Diamond(const QColor &color, int x, int y);

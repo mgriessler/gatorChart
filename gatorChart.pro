@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     model.cpp \
     shape.cpp \
     m.cpp \
-    trap.cpp
+    trap.cpp \
+    diamond.cpp
 
 HEADERS  += mainwindow.h \
     view.h \
@@ -30,5 +31,6 @@ HEADERS  += mainwindow.h \
     model.h \
     shape.h \
     m.h \
-    trap.h
+    trap.h \
+    diamond.h
 

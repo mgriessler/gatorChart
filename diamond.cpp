@@ -2,7 +2,7 @@
 
 #include <QtWidgets>
 
-Diamond::Dimond(const QColor &color, int x, int y)
+Diamond::Diamond(const QColor &color, int x, int y)
 {
 
     this -> x = x;
@@ -18,7 +18,7 @@ Diamond::Dimond(const QColor &color, int x, int y)
 QRectF Diamond ::boundingRect() const
 {
     //window location
-    return QRectF(0, 0, 110, 70);
+    return QRectF(0, 0, 110, 110);
     
 }
 
@@ -63,14 +63,14 @@ void Diamond::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     poly << QPoint(50,1);
     poly << QPoint(100,50);
     poly << QPoint(50,100);
-    poly << QPoint(50,1);
+    poly << QPoint(1,50);
 
     painter->drawPolygon(poly);
 
     QPainterPath p;
     p.addRegion(poly);
     painter->fillPath(p,fillbrush);
-
+}
 
 void Diamond::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
