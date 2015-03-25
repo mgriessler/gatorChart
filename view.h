@@ -54,6 +54,9 @@ private slots:
 
     void addSquare();
 
+    void editColor();
+    void addLabel();
+
 private:
     GraphicsView *graphicsView;
     QLabel *label;
