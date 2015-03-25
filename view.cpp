@@ -11,6 +11,13 @@
 #endif
 #include <qmath.h>
 
+//Dennis 3/25
+#include <QLayout>
+#include <QtGui>
+#include<QtCore>
+#include <QBoxLayout>
+#include<QLabel>
+
 
 /*
  * This file represents what you see in the application
@@ -49,9 +56,13 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     QSize iconSize(size, size);
 
 
+
+
+
     //manipulation buttons
     QToolButton *addSquareButton = new QToolButton;
     addSquareButton->setText(tr("Square"));
+
 
     //utility buttons
     QToolButton *zoomInIcon = new QToolButton;
@@ -142,7 +153,38 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     topLayout->addLayout(zoomSliderLayout, 1, 1);
     //topLayout->addLayout(rotateSliderLayout, 2, 0);
     //topLayout->addWidget(addSquareButton, 2, 1);
+
+
+
+
     setLayout(topLayout);
+
+    //Dennis 3/25
+    QGridLayout *myLayout = new QGridLayout;
+
+    label = new QLabel(tr("<b>Properties</b>"));
+
+    QToolButton *color = new QToolButton;
+    color->setText(tr("Edit Color"));
+
+    QToolButton *text = new QToolButton;
+    text->setText(tr("Add Label"));
+
+    //Adding widgets to myLayout
+    myLayout->addWidget(label,0,1);
+    myLayout->addWidget(color, 1, 0);
+    myLayout->addWidget(text, 1, 1);
+
+    //add to topLayout
+    topLayout->addLayout(myLayout,0,4);
+
+    //connect stuff
+    //connect(color, SIGNAL(clicked()), this, SLOT(editColor()));
+    //connect(text, SIGNAL(clicked()), this, SLOT(addLabel()));
+
+
+
+
 
     connect(addSquareButton, SIGNAL(clicked()), this, SLOT(addSquare()));
 
@@ -170,6 +212,20 @@ void View::addSquare()
     Model->create();
     //do nothing for now
 }
+
+
+void View::addLabel()
+{
+    //Model->create();
+    //do nothing for now
+}
+
+void View::editColor()
+{
+    //Model->create();
+    //do nothing for now
+}
+
 
 QGraphicsView *View::view() const
 {
