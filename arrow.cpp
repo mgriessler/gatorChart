@@ -7,52 +7,17 @@
 #include <QPen>
 #include <QPointF>
 #include <QPolygonF>
-
 #include <QRectF>
 #include <QSizeF>
 #include <QStyleOptionGraphicsItem>
 #include <Qt>
 #include <QWidget>
 
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
-#include <>
 
 //Constructor
 
 
-Arrow::Arrow(DiagramItem *startItem, DiagramItem *endItem,
+Arrow::Arrow(shape *startItem, shape *endItem,
 
 
          QGraphicsItem *parent, QGraphicsScene *scene)
