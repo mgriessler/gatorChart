@@ -62,6 +62,11 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     //manipulation buttons
     QToolButton *addSquareButton = new QToolButton;
     addSquareButton->setText(tr("Square"));
+    
+    QToolButton *addConnector = new QToolButton;
+    addConnector->setText(tr("Connector"));
+    addConnector->setCheckable(true);
+    addConnector->setChecked(false);
 
 
     //utility buttons
@@ -116,11 +121,11 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     QHBoxLayout *labelLayout = new QHBoxLayout;
     label = new QLabel(name);
     label2 = new QLabel(tr("Pointer Mode"));
-    selectModeButton = new QToolButton;
+    QToolButton *selectModeButton = new QToolButton;
     selectModeButton->setText(tr("Select"));
     selectModeButton->setCheckable(true);
     selectModeButton->setChecked(true);
-    dragModeButton = new QToolButton;
+    QToolButton *dragModeButton = new QToolButton;
     dragModeButton->setText(tr("Drag"));
     dragModeButton->setCheckable(true);
     dragModeButton->setChecked(false);
@@ -131,6 +136,15 @@ View::View(const QString &name, model *Mod, QWidget *parent)
 
     printButton = new QToolButton;
     printButton->setIcon(QIcon(QPixmap(":/fileprint.png")));
+    
+    // Tool Bar
+    QHBoxLayout *toolBar = new QHBoxLayout;
+    toolBar->addWidget(selectModeButton);
+    toolBar->addWidget(dragModeButton);
+    toolBar->addWidget(addConnector);
+    toolBar->addWidget(zoomInIcon);
+    //toolBar->addWidget(zoomSlider);
+    toolBar->addWidget(zoomOutIcon);
 
     QButtonGroup *pointerModeGroup = new QButtonGroup;
     pointerModeGroup->setExclusive(true);
@@ -146,17 +160,14 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     //labelLayout->addWidget(antialiasButton);
     //labelLayout->addWidget(printButton);
     labelLayout->addWidget(addSquareButton);
-
+    
     QGridLayout *topLayout = new QGridLayout;
     topLayout->addLayout(labelLayout, 0, 0);
-    topLayout->addWidget(graphicsView, 1, 0);
-    topLayout->addLayout(zoomSliderLayout, 1, 1);
+    topLayout->addWidget(graphicsView, 2, 0);
+    topLayout->addLayout(toolBar, 1, 0);
+    //topLayout->addLayout(zoomSliderLayout, 1, 1);
     //topLayout->addLayout(rotateSliderLayout, 2, 0);
     //topLayout->addWidget(addSquareButton, 2, 1);
-
-
-
-
     setLayout(topLayout);
 
     //Dennis 3/25
