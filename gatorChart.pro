@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     m.cpp \
     trap.cpp \
     diamond.cpp \
-    parallelogram.cpp
+    parallelogram.cpp \
+    arrow.cpp
 
 HEADERS  += mainwindow.h \
     view.h \
@@ -34,5 +35,6 @@ HEADERS  += mainwindow.h \
     m.h \
     trap.h \
     diamond.h \
-    parallelogram.h
+    parallelogram.h \
+    arrow.h
 
