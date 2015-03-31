@@ -122,7 +122,6 @@ View::View(const QString &name, model *Mod, QWidget *parent)
 
     // Label layout
     QHBoxLayout *labelLayout = new QHBoxLayout;
-    label = new QLabel(name);
     label2 = new QLabel(tr("Pointer Mode"));
     QToolButton *selectModeButton = new QToolButton;
     selectModeButton->setText(tr("Select"));
