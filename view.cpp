@@ -149,15 +149,6 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     //toolBar->addWidget(zoomSlider);
     toolBar->addWidget(zoomOutIcon);
 
-    // Tool Bar
-   // QHBoxLayout *toolBar = new QHBoxLayout;
-    //toolBar->addWidget(selectModeButton);
-    //toolBar->addWidget(dragModeButton);
-    //toolBar->addWidget(addConnector);
-    //toolBar->addWidget(zoomInIcon);
-    //toolBar->addWidget(zoomSlider);
-    //toolBar->addWidget(zoomOutIcon);
-
     QButtonGroup *pointerModeGroup = new QButtonGroup;
     pointerModeGroup->setExclusive(true);
     pointerModeGroup->addButton(selectModeButton);
@@ -176,7 +167,7 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     QGridLayout *topLayout = new QGridLayout;
     topLayout->addLayout(labelLayout, 0, 0);
     topLayout->addWidget(graphicsView, 2, 0);
-    topLayout->addLayout(toolBar, 1, 0);
+    topLayout->addLayout(toolBar, 1, 0, 1, 3);
     //topLayout->addLayout(zoomSliderLayout, 1, 1);
     //topLayout->addLayout(rotateSliderLayout, 2, 0);
     //topLayout->addWidget(addSquareButton, 2, 1);
@@ -199,7 +190,7 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     myLayout->addWidget(text, 2, 1);
 
     //add to topLayout
-    topLayout->addLayout(myLayout,2,4);
+    topLayout->addLayout(myLayout,2,2);
 
     //connect stuff
     //connect(color, SIGNAL(clicked()), this, SLOT(editColor()));
