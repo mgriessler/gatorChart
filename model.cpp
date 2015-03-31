@@ -1,6 +1,7 @@
 #include "model.h"
 #include "trap.h"
 #include "diamond.h"
+#include "parallelogram.h"
 #include <iostream>
 
 /*********************************************************
@@ -27,7 +28,7 @@ void model::create()
     QColor color(QColor(Qt::red));
     qreal x = 700;
     qreal y = 700;
-    items[0] = new Square(color, x, y);
+    items[0] = new Parallel(color, x, y);
     items[0]->setPos(QPointF(100, 100));
     addItem(items[0]);
 }

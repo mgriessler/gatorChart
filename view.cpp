@@ -69,6 +69,11 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     addConnector->setChecked(false);
 
 
+    QToolButton *addConnector = new QToolButton;
+    addConnector->setText(tr("Connector"));
+    addConnector->setCheckable(true);
+    addConnector->setChecked(false);
+
     //utility buttons
     QToolButton *zoomInIcon = new QToolButton;
     zoomInIcon->setAutoRepeat(true);
@@ -146,6 +151,15 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     //toolBar->addWidget(zoomSlider);
     toolBar->addWidget(zoomOutIcon);
 
+    // Tool Bar
+    QHBoxLayout *toolBar = new QHBoxLayout;
+    toolBar->addWidget(selectModeButton);
+    toolBar->addWidget(dragModeButton);
+    toolBar->addWidget(addConnector);
+    toolBar->addWidget(zoomInIcon);
+    //toolBar->addWidget(zoomSlider);
+    toolBar->addWidget(zoomOutIcon);
+
     QButtonGroup *pointerModeGroup = new QButtonGroup;
     pointerModeGroup->setExclusive(true);
     pointerModeGroup->addButton(selectModeButton);
@@ -154,8 +168,8 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     labelLayout->addWidget(label);
     labelLayout->addStretch();
     labelLayout->addWidget(label2);
-    labelLayout->addWidget(selectModeButton);
-    labelLayout->addWidget(dragModeButton);
+    //labelLayout->addWidget(selectModeButton);
+    //labelLayout->addWidget(dragModeButton);
     labelLayout->addStretch();
     //labelLayout->addWidget(antialiasButton);
     //labelLayout->addWidget(printButton);
