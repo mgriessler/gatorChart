@@ -72,11 +72,6 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     addConnector->setChecked(false);
 
 
-    QToolButton *addConnector = new QToolButton;
-    addConnector->setText(tr("Connector"));
-    addConnector->setCheckable(true);
-    addConnector->setChecked(false);
-
     //utility buttons
     QToolButton *zoomInIcon = new QToolButton;
     zoomInIcon->setAutoRepeat(true);
@@ -155,13 +150,13 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     toolBar->addWidget(zoomOutIcon);
 
     // Tool Bar
-    QHBoxLayout *toolBar = new QHBoxLayout;
-    toolBar->addWidget(selectModeButton);
-    toolBar->addWidget(dragModeButton);
-    toolBar->addWidget(addConnector);
-    toolBar->addWidget(zoomInIcon);
+   // QHBoxLayout *toolBar = new QHBoxLayout;
+    //toolBar->addWidget(selectModeButton);
+    //toolBar->addWidget(dragModeButton);
+    //toolBar->addWidget(addConnector);
+    //toolBar->addWidget(zoomInIcon);
     //toolBar->addWidget(zoomSlider);
-    toolBar->addWidget(zoomOutIcon);
+    //toolBar->addWidget(zoomOutIcon);
 
     QButtonGroup *pointerModeGroup = new QButtonGroup;
     pointerModeGroup->setExclusive(true);
@@ -200,11 +195,11 @@ View::View(const QString &name, model *Mod, QWidget *parent)
 
     //Adding widgets to myLayout
     myLayout->addWidget(label,0,1);
-    myLayout->addWidget(color, 1, 0);
-    myLayout->addWidget(text, 1, 1);
+    myLayout->addWidget(color, 1, 1);
+    myLayout->addWidget(text, 2, 1);
 
     //add to topLayout
-    topLayout->addLayout(myLayout,0,4);
+    topLayout->addLayout(myLayout,2,4);
 
     //connect stuff
     //connect(color, SIGNAL(clicked()), this, SLOT(editColor()));
