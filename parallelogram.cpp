@@ -1,4 +1,4 @@
-#include "paralellogram.h"
+#include "parallelogram.h"
 #include <QtWidgets>
 
 Parallel::Parallel(const QColor &color, int x, int y)
