@@ -57,7 +57,7 @@ private slots:
 
     void editColor();
     void addLabel();
-    void mousePressEvent(QMouseEvent *mouseEvent);
+
 
 private:
     GraphicsView *graphicsView;

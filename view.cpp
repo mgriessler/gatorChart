@@ -227,10 +227,7 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     setupMatrix();
 }
 
-void View::mousePressEvent(QMouseEvent *event)
-{
-    std::cout << "mouse grabbed!" <<std::endl;
-};
+
 
 void View::addSquare()
 {
