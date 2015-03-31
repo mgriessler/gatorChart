@@ -5,6 +5,7 @@
 #include <QFrame>
 #include <QGraphicsView>
 #include "model.h"
+#include "square.h"
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -56,6 +57,7 @@ private slots:
 
     void editColor();
     void addLabel();
+    void mousePressEvent(QMouseEvent *mouseEvent);
 
 private:
     GraphicsView *graphicsView;

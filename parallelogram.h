@@ -9,7 +9,7 @@ class Parallo : public QGraphicsItem
 public:
     Parallo(const QColor &color, int x, int y);
 
-    QParalloF boundingParallo() const Q_DECL_OVERRIDE;
+    QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget) Q_DECL_OVERRIDE;
 

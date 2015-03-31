@@ -18,6 +18,9 @@
 #include <QBoxLayout>
 #include<QLabel>
 
+//matt
+#include <iostream>
+
 
 /*
  * This file represents what you see in the application
@@ -194,9 +197,6 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     //connect(text, SIGNAL(clicked()), this, SLOT(addLabel()));
 
 
-
-
-
     connect(addSquareButton, SIGNAL(clicked()), this, SLOT(addSquare()));
 
     connect(resetButton, SIGNAL(clicked()), this, SLOT(resetView()));
@@ -217,6 +217,11 @@ View::View(const QString &name, model *Mod, QWidget *parent)
 
     setupMatrix();
 }
+
+void View::mousePressEvent(QMouseEvent *event)
+{
+    std::cout << "mouse grabbed!" <<std::endl;
+};
 
 void View::addSquare()
 {

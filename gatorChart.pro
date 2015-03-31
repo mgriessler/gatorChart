@@ -20,21 +20,15 @@ SOURCES += main.cpp\
     view.cpp \
     square.cpp \
     model.cpp \
-    shape.cpp \
-    m.cpp \
     trap.cpp \
     diamond.cpp \
-    parallelogram.cpp \
-    arrow.cpp
+    parallelogram.cpp
 
 HEADERS  += mainwindow.h \
     view.h \
     square.h \
     model.h \
-    shape.h \
-    m.h \
     trap.h \
     diamond.h \
-    parallelogram.h \
-    arrow.h
+    parallelogram.h
 

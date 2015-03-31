@@ -8,8 +8,10 @@
 #include <QPolygonF>
 #include <QPixmap>
 #include <QGraphicsSceneContextMenuEvent>
-#include <QVariant>;
+#include <QVariant>
 #include <QList>
+#include "arrow.h"
+
 
 class shape : public QGraphicsPolygonItem
 {

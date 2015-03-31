@@ -2,7 +2,7 @@
 #define MODEL_H
 
 #include "square.h"
-#include "m.h"
+
 #include <QGraphicsItem>
 #include <QtWidgets>
 
