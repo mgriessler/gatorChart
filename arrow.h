@@ -19,6 +19,7 @@ class Arrow : public QGraphicsLineItem
 
 
 public:
+<<<<<<< HEAD
 
 
     enum  { Type = UserType + 4 };
@@ -85,5 +86,71 @@ private:
 
 
 };
+=======
+>>>>>>> origin/master
 
-#endif // ARROW_H
+
+    enum  { Type = UserType + 4 };
+
+    Arrow(shape *startItem, shape *endItem,
+
+      QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
+
+    int type() const
+
+
+         { return Type; }
+
+
+    QRectF boundingRect() const;
+
+    QPainterPath Shape() const;
+
+
+    void setColor(const QColor &color)
+
+
+       { myColor = color; }
+
+
+    shape *startItem() const
+
+
+         { return myStartItem; }
+
+
+    shape *endItem() const
+
+
+        { return myEndItem; }
+
+
+    void updatePosition();
+
+
+
+protected:
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
+
+               QWidget *widget = 0);
+
+
+
+
+private:
+
+
+    shape *myStartItem;
+
+
+    shape *myEndItem;
+
+
+    QColor myColor;
+
+
+    QPolygonF arrowHead;
+
+
+};

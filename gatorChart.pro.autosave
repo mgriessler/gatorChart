@@ -20,24 +20,29 @@ SOURCES += main.cpp\
     view.cpp \
     square.cpp \
     model.cpp \
+    shape.cpp \
+    m.cpp \
     trap.cpp \
-<<<<<<< HEAD
+<<<<<<< HEAD \
+    arrow.cpp \
+    diamond.cpp
     diamond.cpp
 =======
     diamond.cpp \
-<<<<<<< HEAD
-    parallelogram.cpp
-=======
     parallelogram.cpp \
     arrow.cpp
->>>>>>> origin/master
 >>>>>>> origin/master
 
 HEADERS  += mainwindow.h \
     view.h \
     square.h \
     model.h \
+    shape.h \
+    m.h \
     trap.h \
     diamond.h \
-    parallelogram.h
+    parallelogram.h \
+    arrow.h \
+    arrow.h \
+    diamond.h
 

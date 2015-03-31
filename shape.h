@@ -1,6 +1,7 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
+<<<<<<< HEAD
 #include <QGraphicsPolygonItem>
 #include <QMenu>
 #include <QGraphicsItem>
@@ -12,36 +13,14 @@
 #include <QList>
 #include "arrow.h"
 
+=======
+>>>>>>> origin/master
 
-class shape : public QGraphicsPolygonItem
+class shape
 {
 public:
-    enum{Type = UserType + 15};
-    enum DiagramType {Step, Conditional, StartEnd, Io};
-
-    shape(DiagramType diagramType, QMenu *contextMenu, QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
-
-    void removeArrow(Arrow *arrow);
-    void removeArrow();
-    DiagramType diagramType() const
-        {return myDiagramType;}
-    QPolygonF polygon() const
-        {return myPolygon;}
-    void addArrow(Arrow *arrow);
-    QPixmap image() const;
-    int type() const
-        {return Type;}
-
-protected:
-    void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
-    QVariant itemChange(GraphicsItemChange change, const QVariant &value);
-
-private:
-    DiagramType myDiagramType;
-    QPolygonF myPolygon;
-    QMenu *myContextMenu;
-    QList<Arrrow*> arrows;
-
+    shape();
+    ~shape();
 };
 
 #endif // SHAPE_H

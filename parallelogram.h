@@ -4,10 +4,10 @@
 #include <QColor>
 #include <QGraphicsItem>
 
-class Parallo : public QGraphicsItem
+class Parallel : public QGraphicsItem
 {
 public:
-    Parallo(const QColor &color, int x, int y);
+    Parallel(const QColor &color, int x, int y);
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;

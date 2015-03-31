@@ -15,12 +15,12 @@ Parallel::Parallel(const QColor &color, int x, int y)
 QRectF Parallel::boundingRect() const
 {
 //0,0,110,70 ???
-    return QRectF(0, 0, 110, 70);
+    return QRectF(0, 0, 110, 110);
 }
 QPainterPath Parallel::shape() const
 {
     QPainterPath path;
-    path.addPolygon()
+//    path.addPolygon()
     path.addRect(14, 14, 82, 42);
     path.addRect(0, 0, 130, 80);
     return path;
