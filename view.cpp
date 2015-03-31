@@ -71,12 +71,6 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     addConnector->setCheckable(true);
     addConnector->setChecked(false);
 
-
-    QToolButton *addConnector = new QToolButton;
-    addConnector->setText(tr("Connector"));
-    addConnector->setCheckable(true);
-    addConnector->setChecked(false);
-
     //utility buttons
     QToolButton *zoomInIcon = new QToolButton;
     zoomInIcon->setAutoRepeat(true);
@@ -145,15 +139,6 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     printButton = new QToolButton;
     printButton->setIcon(QIcon(QPixmap(":/fileprint.png")));
     
-    // Tool Bar
-    QHBoxLayout *toolBar = new QHBoxLayout;
-    toolBar->addWidget(selectModeButton);
-    toolBar->addWidget(dragModeButton);
-    toolBar->addWidget(addConnector);
-    toolBar->addWidget(zoomInIcon);
-    //toolBar->addWidget(zoomSlider);
-    toolBar->addWidget(zoomOutIcon);
-
     // Tool Bar
     QHBoxLayout *toolBar = new QHBoxLayout;
     toolBar->addWidget(selectModeButton);
