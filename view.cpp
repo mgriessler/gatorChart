@@ -58,9 +58,12 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     int size = style()->pixelMetric(QStyle::PM_ToolBarIconSize);
     QSize iconSize(size, size);
 
+    //Text Color Template
+    /*To make the text of a label colored, do this: setText(colorTemplate.arg("color", "text"))
+      with the appropriate color and text
+    */
 
-
-
+    QString colorTemplate = tr("<font color='%1'>%2</font>");
 
     //manipulation buttons
     QToolButton *addSquareButton = new QToolButton;
@@ -122,7 +125,7 @@ View::View(const QString &name, model *Mod, QWidget *parent)
 
     // Label layout
     QHBoxLayout *labelLayout = new QHBoxLayout;
-    label2 = new QLabel(tr("Pointer Mode"));
+    label2 = new QLabel(colorTemplate.arg("blue", "Pointer"));
     QToolButton *selectModeButton = new QToolButton;
     selectModeButton->setText(tr("Select"));
     selectModeButton->setCheckable(true);
@@ -135,19 +138,11 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     antialiasButton->setText(tr("Antialiasing"));
     antialiasButton->setCheckable(true);
     antialiasButton->setChecked(false);
-    /*Change Text Color!!!!!!!!!!!!
-    QPalette sample_palette;
-    sample_palette.setColor(QPalette::Window, Qt::white);
-    sample_palette.setColor(QPalette::WindowText, Qt::blue);
-
-    sample_label->setAutoFillBackground(true);
-    sample_label->setPalette(sample_palette);
-    sample_label->setText("What ever text");
-    */
 
     printButton = new QToolButton;
     printButton->setIcon(QIcon(QPixmap(":/fileprint.png")));
     
+
     // Tool Bar
     QHBoxLayout *toolBar = new QHBoxLayout;
     toolBar->addWidget(selectModeButton);
