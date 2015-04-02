@@ -135,6 +135,15 @@ View::View(const QString &name, model *Mod, QWidget *parent)
     antialiasButton->setText(tr("Antialiasing"));
     antialiasButton->setCheckable(true);
     antialiasButton->setChecked(false);
+    /*Change Text Color!!!!!!!!!!!!
+    QPalette sample_palette;
+    sample_palette.setColor(QPalette::Window, Qt::white);
+    sample_palette.setColor(QPalette::WindowText, Qt::blue);
+
+    sample_label->setAutoFillBackground(true);
+    sample_label->setPalette(sample_palette);
+    sample_label->setText("What ever text");
+    */
 
     printButton = new QToolButton;
     printButton->setIcon(QIcon(QPixmap(":/fileprint.png")));
