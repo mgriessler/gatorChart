@@ -5,6 +5,7 @@
 #include <QFrame>
 #include <QGraphicsView>
 #include "model.h"
+#include "square.h"
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -37,7 +38,8 @@ public:
 
     QGraphicsView *view() const;
     model *Model;
-
+    void keyPressEvent(QKeyEvent *event);
+    void mousePressEvent(QMouseEvent *event);
 public slots:
     void zoomIn(int level = 1);
     void zoomOut(int level = 1);
@@ -48,7 +50,6 @@ private slots:
     void setupMatrix();
     void togglePointerMode();
     void toggleAntialiasing();
-    void print();
     void rotateLeft();
     void rotateRight();
 
@@ -56,6 +57,7 @@ private slots:
 
     void editColor();
     void addLabel();
+
 
 private:
     GraphicsView *graphicsView;
@@ -65,8 +67,10 @@ private:
     QToolButton *selectModeButton;
     QToolButton *dragModeButton;
     QToolButton *antialiasButton;
-    QToolButton *printButton;
     QToolButton *resetButton;
+    QToolButton *addConnectorButton;
+    QToolButton *zoomInButton;
+    QToolButton *zoomOutButton;
     QSlider *zoomSlider;
     QSlider *rotateSlider;
 };

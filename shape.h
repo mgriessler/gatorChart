@@ -10,6 +10,7 @@
 #include <QGraphicsSceneContextMenuEvent>
 #include <QVariant>
 #include <QList>
+#include "arrow.h"
 
 class shape : public QGraphicsPolygonItem
 {

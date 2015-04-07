@@ -1,6 +1,7 @@
 #include "model.h"
 #include "trap.h"
 #include "diamond.h"
+#include "parallelogram.h"
 #include <iostream>
 
 /*********************************************************
@@ -27,9 +28,28 @@ void model::create()
     QColor color(QColor(Qt::red));
     qreal x = 700;
     qreal y = 700;
-    items[0] = new Square(color, x, y);
-    items[0]->setPos(QPointF(100, 100));
-    addItem(items[0]);
+    QGraphicsItem *item = new Trap(color, x, y);
+    item->setPos(QPointF(100, 100));
+    addItem(item);
+}
+
+void model::createRect(QColor color, qreal x, qreal y)
+{
+    std::cout<<"Add rectangle to scene"<<std::endl;
+
+    QGraphicsItem *item = new Square(color, x, y);
+    item->setPos(QPointF(100, 100));
+    addItem(item);
+}
+
+void model::itemHere(QMouseEvent *event)
+{
+    QTransform trans;
+    if (QGraphicsItem *item = itemAt(QPointF(100,100), trans)) {
+            std::cout << "You clicked on item" << item << std::endl;
+    } else {
+            std::cout << "You didn't click on an item." << std::endl;
+    }
 }
 
 void model::updateScene()

@@ -1,4 +1,3 @@
-
 #-------------------------------------------------
 #
 # Project created by QtCreator 2015-03-01T00:49:24
@@ -21,19 +20,29 @@ SOURCES += main.cpp\
     view.cpp \
     square.cpp \
     model.cpp \
-    arrow.cpp \
-    diagramitem.cpp
+    shape.cpp \
+    m.cpp \
     trap.cpp \
+<<<<<<< HEAD \
+    arrow.cpp \
+    diamond.cpp
+    diamond.cpp
+=======
     diamond.cpp \
-    parallelogram.cpp
+    parallelogram.cpp \
+    arrow.cpp
+>>>>>>> origin/master
 
 HEADERS  += mainwindow.h \
     view.h \
     square.h \
     model.h \
-    arrow.h \
-    diagramitem.h
-
+    shape.h \
+    m.h \
     trap.h \
     diamond.h \
-    parallelogram.h
+    parallelogram.h \
+    arrow.h \
+    arrow.h \
+    diamond.h
+
