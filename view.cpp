@@ -101,6 +101,12 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     toolBar->addWidget(zoomInButton);
     toolBar->addWidget(zoomOutButton);
 
+    //Text Color Template
+    /*To make the text of a label colored, do this: setText(colorTemplate.arg("color", "text"))
+      with the appropriate color and text
+    */
+
+    QString colorTemplate = tr("<font color='%1'>%2</font>");
 
     QToolButton *addSquareButton = new QToolButton;
     addSquareButton->setText(tr("Square"));
@@ -131,11 +137,15 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
     // Label layout
     QHBoxLayout *labelLayout = new QHBoxLayout;
-    antialiasButton = new QToolButton;
-    antialiasButton->setText(tr("Antialiasing"));
-    antialiasButton->setCheckable(true);
-    antialiasButton->setChecked(false);
-
+    label2 = new QLabel(colorTemplate.arg("blue", "Pointer"));
+    QToolButton *selectModeButton = new QToolButton;
+    selectModeButton->setText(tr("Select"));
+    selectModeButton->setCheckable(true);
+    selectModeButton->setChecked(true);
+    QToolButton *dragModeButton = new QToolButton;
+    dragModeButton->setText(tr("Drag"));
+    dragModeButton->setCheckable(true);
+    dragModeButton->setChecked(false);
 
     labelLayout->addStretch();
     labelLayout->addWidget(label2);
