@@ -17,7 +17,7 @@
 
 //Constructor
 
-    shape::shape(DiagramType diagramType, QMenu *contextMenu, QGraphicsIten *parent, QgraphicsScene *scene) :QGraphicsPolygonItem(parent, scene)
+    /*shape::shape(DiagramType diagramType, QMenu *contextMenu, QGraphicsItem *parent,  QGraphicsScene  *scene) : QGraphicsPolygonItem(parent, scene)
     {
         myDiagramType = diagramType;
         myContextMenu = contextMenu;
@@ -102,3 +102,4 @@
         }
         return value;
     }
+*/

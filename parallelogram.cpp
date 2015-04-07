@@ -1,4 +1,4 @@
-#include "paralellogram.h"
+/*#include "parallelogram.h"
 #include <QtWidgets>
 
 Parallel::Parallel(const QColor &color, int x, int y)
@@ -70,7 +70,7 @@ void Parallel::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     QPainterPath p;
     p.addRegion(poly);
     painter->fillPath(p,fillbrush);
-
+*/
 
     /*
     //painter->drawLine(15, 54, 94, 54);
@@ -82,6 +82,7 @@ void Parallel::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     painter->drawText(0, 0, QString("Start"));
     painter->restore();
     */
+/*
 }
 
 void Parallel::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -105,3 +106,5 @@ void Parallel::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsItem::mouseReleaseEvent(event);
     update();
 }
+
+*/

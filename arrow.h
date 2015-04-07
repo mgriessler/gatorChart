@@ -2,86 +2,47 @@
 #define ARROW_H
 
 #include <QGraphicsLineItem>
-#include <QGraphicsItem>
-#include <QGraphicsScene>
-#include <QRectF>
-#include <QPainterPath>
-#include <QColor>
-#include <QPainter>
-#include <QStyleOptionGraphicsItem>
-#include <QWidget>
-#include <QPolygonF>
 
+#include "diagramitem.h"
+
+class QGraphicsPolygonItem;
+class QGraphicsLineItem;
+class QGraphicsScene;
+class QRectF;
+class QGraphicsSceneMouseEvent;
+class QPainterPath;
 
 class Arrow : public QGraphicsLineItem
-
 {
-
-
 public:
+    enum { Type = UserType + 4 };
 
+    Arrow(DiagramItem *startItem, DiagramItem *endItem,
+      QGraphicsItem *parent = 0);
 
-    enum  { Type = UserType + 4 };
+    int type() const Q_DECL_OVERRIDE { return Type; }
 
-    Arrow(shape *startItem, shape *endItem,
+    //boundingRect() and shape()check for collisions and selections
+    QRectF boundingRect() const Q_DECL_OVERRIDE;
+    QPainterPath shape() const Q_DECL_OVERRIDE;
 
-      QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
+    //setcolor sets item's color
+    void setColor(const QColor &color) { myColor = color; }
+    DiagramItem *startItem() const { return myStartItem; }
+    DiagramItem *endItem() const { return myEndItem; }
 
-    int type() const
-
-
-         { return Type; }
-
-
-    QRectF boundingRect() const;
-
-    QPainterPath Shape() const;
-
-
-    void setColor(const QColor &color)
-
-
-       { myColor = color; }
-
-
-    shape *startItem() const
-
-
-         { return myStartItem; }
-
-
-    shape *endItem() const
-
-
-        { return myEndItem; }
-
-
+    //updatePosition()causes the arrow to recalculate the position of the arrow
     void updatePosition();
 
-
-
 protected:
-
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-
-               QWidget *widget = 0);
-
-
-
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) Q_DECL_OVERRIDE;
 
 private:
-
-
-    shape *myStartItem;
-
-
-    shape *myEndItem;
-
-
+    DiagramItem *myStartItem;
+    DiagramItem *myEndItem;
     QColor myColor;
-
-
     QPolygonF arrowHead;
-
-
 };
+
+
+#endif // ARROW_H
