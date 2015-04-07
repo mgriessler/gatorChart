@@ -12,8 +12,11 @@ class model : public QGraphicsScene
 public:
     model();
     void create();
+    void createRect(QColor color, qreal x, qreal y);
     void updateScene();
     QGraphicsScene scene;
+    void itemHere(QMouseEvent *event);
+
 
 private:
     QGraphicsItem *items[10];
