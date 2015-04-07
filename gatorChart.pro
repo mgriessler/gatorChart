@@ -22,7 +22,7 @@ SOURCES += main.cpp\
     square.cpp \
     model.cpp \
     arrow.cpp \
-    diagramitem.cpp
+    diagramitem.cpp \
     trap.cpp \
     diamond.cpp \
     parallelogram.cpp
@@ -32,8 +32,7 @@ HEADERS  += mainwindow.h \
     square.h \
     model.h \
     arrow.h \
-    diagramitem.h
-
+    diagramitem.h \
     trap.h \
     diamond.h \
     parallelogram.h
