@@ -60,10 +60,10 @@ void Diamond::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
      fillbrush.setStyle(Qt::SolidPattern);
 
     QPolygon poly;
-    poly << QPoint(50,1);
+    poly << QPoint(50,0);
     poly << QPoint(100,50);
     poly << QPoint(50,100);
-    poly << QPoint(1,50);
+    poly << QPoint(0,50);
 
     painter->drawPolygon(poly);
 

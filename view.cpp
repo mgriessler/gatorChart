@@ -17,6 +17,10 @@
 //matt
 #include <iostream>
 
+//Val
+#include <QPrinter>
+#include <QPrintDialog>
+
 
 /*
  * This file represents what you see in the application
@@ -94,13 +98,18 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     pointerModeGroup->addButton(selectModeButton);
     pointerModeGroup->addButton(dragModeButton);
 
+    //TOOL BAR
+    QLabel *zoomLabel = new QLabel(tr("Zoom"));
     QHBoxLayout *toolBar = new QHBoxLayout;
     toolBar->addWidget(selectModeButton);
     toolBar->addWidget(dragModeButton);
     toolBar->addWidget(addConnectorButton);
+    toolBar->setAlignment(addConnectorButton, Qt::AlignLeft);
+    toolBar->addWidget(zoomLabel);
+    toolBar->setAlignment(zoomLabel, Qt::AlignRight);
     toolBar->addWidget(zoomInButton);
     toolBar->addWidget(zoomOutButton);
-
+    toolBar->setAlignment(zoomOutButton, Qt::AlignLeft);
     //Text Color Template
     /*To make the text of a label colored, do this: setText(colorTemplate.arg("color", "text"))
       with the appropriate color and text
@@ -307,4 +316,14 @@ void View::rotateLeft()
 void View::rotateRight()
 {
     rotateSlider->setValue(rotateSlider->value() + 10);
+}
+
+void View::print()
+{
+    std::cout<<"hola"<<std::endl;
+    QPrinter printer;
+    if (QPrintDialog(&printer).exec() == QDialog::Accepted) {
+        QPainter painter(&printer);
+        graphicsView->render(&painter);
+    }
 }

@@ -15,7 +15,9 @@ Oval::Oval(const QColor &color, int x,int y)
 
 QRectF Oval::boundingRect() const
 {
+
     return QRectF(0,0,110,100);
+
 }
 
 QPainterPath Oval::shape() const
@@ -44,7 +46,10 @@ void Oval::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     painter->setBrush(QBrush(fillColor.dark(option->state & QStyle::State_Sunken ? 120 : 100)));
 
     painter->setPen(QPen(Qt::black, 0));
+
+
     painter->drawEllipse(0,0,90,40);
+
 }
 void Oval::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
