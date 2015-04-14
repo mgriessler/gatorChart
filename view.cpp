@@ -163,23 +163,34 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
     label = new QLabel(tr("<b>Properties</b>"));
 
-    QToolButton *color = new QToolButton;
-    color->setText(tr("Edit Color"));
+    //colorLabel = new QLabel(tr("Edit Color"));
+    //QToolButton *color = new QToolButton;
+    //color->setText(tr("Edit Color"));
+
+    QComboBox *combo = new QComboBox;
+    combo->addItem("red");
+    combo->addItem("green");
+    combo->addItem("blue");
+
+
 
     QToolButton *text = new QToolButton;
     text->setText(tr("Add Label"));
 
     //Adding widgets to myLayout
     myLayout->addWidget(label,0,1);
-    myLayout->addWidget(color, 1, 1);
-    myLayout->addWidget(text, 2, 1);
+     myLayout->addWidget(text, 1, 1);
+    //myLayout->addWidget(colorLabel, 2, 1);
+    myLayout->addWidget(combo,2,1);
+
+
 
     //add to topLayout
     topLayout->addLayout(myLayout,2,2);
 
     //connect stuff
     //connect(color, SIGNAL(clicked()), this, SLOT(editColor()));
-    //connect(text, SIGNAL(clicked()), this, SLOT(addLabel()));
+    connect(text, SIGNAL(clicked()), this, SLOT(addLabel()));
 
 
     connect(addSquareButton, SIGNAL(clicked()), this, SLOT(addSquare()));
@@ -220,8 +231,8 @@ void View::addSquare()
 
 void View::addLabel()
 {
-    //Model->create();
-    //do nothing for now
+    Model->label();
+
 }
 
 void View::editColor()

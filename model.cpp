@@ -33,6 +33,17 @@ void model::create()
     addItem(item);
 }
 
+void model::label()
+{
+    std::cout<<"Add label to scene"<<std::endl;
+    QColor color(QColor(Qt::red));
+    qreal x = 700;
+    qreal y = 700;
+    QGraphicsItem *item = new Square(color, x, y);
+    item->setPos(QPointF(100, 100));
+    addItem(item);
+}
+
 void model::createRect(QColor color, qreal x, qreal y)
 {
     std::cout<<"Add rectangle to scene"<<std::endl;

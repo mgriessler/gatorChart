@@ -63,6 +63,7 @@ private:
     GraphicsView *graphicsView;
     QLabel *label;
     QLabel *label2;
+    QLabel *colorLabel;
     QToolButton *addSquareButton;
     QToolButton *selectModeButton;
     QToolButton *dragModeButton;
