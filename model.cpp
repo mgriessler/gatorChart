@@ -2,6 +2,7 @@
 #include "trap.h"
 #include "diamond.h"
 #include "parallelogram.h"
+#include "oval.h"
 #include <iostream>
 
 /*********************************************************
@@ -28,7 +29,7 @@ void model::create()
     QColor color(QColor(Qt::red));
     qreal x = 700;
     qreal y = 700;
-    QGraphicsItem *item = new Trap(color, x, y);
+    QGraphicsItem *item = new Oval(color, x, y);
     item->setPos(QPointF(100, 100));
     addItem(item);
 }

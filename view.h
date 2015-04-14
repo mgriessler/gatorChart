@@ -6,6 +6,7 @@
 #include <QGraphicsView>
 #include "model.h"
 #include "square.h"
+#include <QListWidget>
 
 QT_BEGIN_NAMESPACE
 class QLabel;

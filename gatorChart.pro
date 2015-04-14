@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     diagramitem.cpp \
     trap.cpp \
     diamond.cpp \
-    parallelogram.cpp
+    parallelogram.cpp \
+    oval.cpp
 
 HEADERS  += mainwindow.h \
     view.h \
@@ -35,4 +36,5 @@ HEADERS  += mainwindow.h \
     diagramitem.h \
     trap.h \
     diamond.h \
-    parallelogram.h
+    parallelogram.h \
+    oval.h

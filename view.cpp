@@ -163,7 +163,10 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
     label = new QLabel(tr("<b>Properties</b>"));
 
-    //colorLabel = new QLabel(tr("Edit Color"));
+
+    colorLabel = new QLabel(tr("Edit Color"));
+    colorLabel->setAlignment(Qt::AlignBottom);
+
     //QToolButton *color = new QToolButton;
     //color->setText(tr("Edit Color"));
 
@@ -176,11 +179,10 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
     QToolButton *text = new QToolButton;
     text->setText(tr("Add Label"));
-
     //Adding widgets to myLayout
     myLayout->addWidget(label,0,1);
-     myLayout->addWidget(text, 1, 1);
-    //myLayout->addWidget(colorLabel, 2, 1);
+     myLayout->addWidget(text, 3, 1);
+    myLayout->addWidget(colorLabel, 1, 1);
     myLayout->addWidget(combo,2,1);
 
 
