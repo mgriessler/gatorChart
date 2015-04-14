@@ -94,12 +94,15 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     pointerModeGroup->addButton(selectModeButton);
     pointerModeGroup->addButton(dragModeButton);
 
-    //zoomLabel = new QLabel(tr("Zoom"));
+    //TOOL BAR
+    QLabel *zoomLabel = new QLabel(tr("Zoom"));
     QHBoxLayout *toolBar = new QHBoxLayout;
     toolBar->addWidget(selectModeButton);
     toolBar->addWidget(dragModeButton);
     toolBar->addWidget(addConnectorButton);
     toolBar->setAlignment(addConnectorButton, Qt::AlignLeft);
+    toolBar->addWidget(zoomLabel);
+    toolBar->setAlignment(zoomLabel, Qt::AlignRight);
     toolBar->addWidget(zoomInButton);
     toolBar->addWidget(zoomOutButton);
     toolBar->setAlignment(zoomOutButton, Qt::AlignLeft);
