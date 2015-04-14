@@ -45,6 +45,7 @@ public slots:
     void zoomOut(int level = 1);
 
 private slots:
+    void print();
     void resetView();
     void setResetButtonEnabled();
     void setupMatrix();

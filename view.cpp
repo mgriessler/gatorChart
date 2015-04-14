@@ -17,6 +17,10 @@
 //matt
 #include <iostream>
 
+//Val
+#include <QPrinter>
+#include <QPrintDialog>
+
 
 /*
  * This file represents what you see in the application
@@ -310,4 +314,14 @@ void View::rotateLeft()
 void View::rotateRight()
 {
     rotateSlider->setValue(rotateSlider->value() + 10);
+}
+
+void View::print()
+{
+    std::cout<<"hola"<<std::endl;
+    QPrinter printer;
+    if (QPrintDialog(&printer).exec() == QDialog::Accepted) {
+        QPainter painter(&printer);
+        graphicsView->render(&painter);
+    }
 }
