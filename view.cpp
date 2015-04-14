@@ -94,13 +94,15 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     pointerModeGroup->addButton(selectModeButton);
     pointerModeGroup->addButton(dragModeButton);
 
+    //zoomLabel = new QLabel(tr("Zoom"));
     QHBoxLayout *toolBar = new QHBoxLayout;
     toolBar->addWidget(selectModeButton);
     toolBar->addWidget(dragModeButton);
     toolBar->addWidget(addConnectorButton);
+    toolBar->setAlignment(addConnectorButton, Qt::AlignLeft);
     toolBar->addWidget(zoomInButton);
     toolBar->addWidget(zoomOutButton);
-
+    toolBar->setAlignment(zoomOutButton, Qt::AlignLeft);
     //Text Color Template
     /*To make the text of a label colored, do this: setText(colorTemplate.arg("color", "text"))
       with the appropriate color and text
