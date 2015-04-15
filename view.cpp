@@ -68,9 +68,14 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     graphicsView->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
     graphicsView->setSceneRect(0,0,700,700);
 
+    //Text Color Template
+    /*To make the text of a label colored, do this: setText(colorTemplate.arg("color", "text"))
+     *with the appropriate color and text */
+    QString colorTemplate = tr("<font color='%1'>%2</font>");
+
 
     //TOOLBAR
-    label2 = new QLabel(tr("Pointer Mode"));
+    QLabel *pointerMode = new QLabel(colorTemplate.arg("blue", "Pointer Mode"));
     selectModeButton = new QToolButton;
     selectModeButton->setText(tr("Select"));
     selectModeButton->setCheckable(true);
@@ -96,14 +101,21 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     zoomOutButton->setText(tr("-"));
     zoomOutButton->setIconSize(iconSize);
 
+
+
     QButtonGroup *pointerModeGroup = new QButtonGroup;
     pointerModeGroup->setExclusive(true);
     pointerModeGroup->addButton(selectModeButton);
     pointerModeGroup->addButton(dragModeButton);
 
+    QToolButton *addSquareButton = new QToolButton;
+    addSquareButton->setText(tr("Square"));
+
     //TOOL BAR
     QLabel *zoomLabel = new QLabel(tr("Zoom"));
     QHBoxLayout *toolBar = new QHBoxLayout;
+    toolBar->addWidget(pointerMode);
+    toolBar->setAlignment(pointerMode, Qt::AlignRight);
     toolBar->addWidget(selectModeButton);
     toolBar->addWidget(dragModeButton);
     toolBar->addWidget(addConnectorButton);
@@ -113,16 +125,8 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     toolBar->addWidget(zoomInButton);
     toolBar->addWidget(zoomOutButton);
     toolBar->setAlignment(zoomOutButton, Qt::AlignLeft);
-    //Text Color Template
-    /*To make the text of a label colored, do this: setText(colorTemplate.arg("color", "text"))
-      with the appropriate color and text
-    */
-
-    QString colorTemplate = tr("<font color='%1'>%2</font>");
-
-    QToolButton *addSquareButton = new QToolButton;
-    addSquareButton->setText(tr("Square"));
-    
+    toolBar->addWidget(addSquareButton);
+    toolBar->setAlignment(addSquareButton, Qt::AlignRight);
 
     QToolButton *rotateLeftIcon = new QToolButton;
     rotateLeftIcon->setIcon(QPixmap(":/rotateleft.png"));
@@ -149,7 +153,6 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
     // Label layout
     QHBoxLayout *labelLayout = new QHBoxLayout;
-    label2 = new QLabel(colorTemplate.arg("blue", "Pointer"));
     QToolButton *selectModeButton = new QToolButton;
     selectModeButton->setText(tr("Select"));
     selectModeButton->setCheckable(true);
@@ -159,15 +162,15 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     dragModeButton->setCheckable(true);
     dragModeButton->setChecked(false);
 
-    labelLayout->addStretch();
-    labelLayout->addWidget(label2);
-    labelLayout->addStretch();
-    labelLayout->addWidget(addSquareButton);
+  //  labelLayout->addStretch();
+  //  labelLayout->addWidget(label2);
+  //  labelLayout->addStretch();
+  //  labelLayout->addWidget(addSquareButton);
 
     QGridLayout *topLayout = new QGridLayout;
-    topLayout->addLayout(labelLayout, 0, 0);
-    topLayout->addWidget(graphicsView, 2, 0);
-    topLayout->addLayout(toolBar, 1, 0, 1, 3);
+    //topLayout->addLayout(labelLayout, 0, 0);
+    topLayout->addWidget(graphicsView, 1, 0);
+    topLayout->addLayout(toolBar, 0, 0, 1, 2);
     setLayout(topLayout);
 
     //Michelle
@@ -191,7 +194,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     QLabel *listLabel = new QLabel(tr("Shapes List"));
 
     listLayout->addWidget(listLabel,0,1);
-    topLayout->addLayout(listLayout,0,3);
+    topLayout->addLayout(listLayout,1,2);
 
     //Dennis 3/25
     QGridLayout *myLayout = new QGridLayout;
@@ -223,7 +226,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
 
     //add to topLayout
-    topLayout->addLayout(myLayout,2,2);
+    topLayout->addLayout(myLayout,1,2);
 
     //connect stuff
     //connect(color, SIGNAL(clicked()), this, SLOT(editColor()));
