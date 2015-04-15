@@ -14,6 +14,9 @@
 #include <QBoxLayout>
 #include<QLabel>
 
+//Michelle
+#include <QListWidget>
+
 //matt
 #include <iostream>
 
@@ -166,6 +169,29 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     topLayout->addWidget(graphicsView, 2, 0);
     topLayout->addLayout(toolBar, 1, 0, 1, 3);
     setLayout(topLayout);
+
+    //Michelle
+    QListWidget *shapesList = new QListWidget();
+    QListWidgetItem *square = new QListWidgetItem();
+    QListWidgetItem *diamond = new QListWidgetItem();
+    QListWidgetItem *trapezoid = new QListWidgetItem();
+    QListWidgetItem *oval = new QListWidgetItem();
+
+    square->setText("square");
+    diamond->setText("diamond");
+    trapezoid->setText("trapezoid");
+    oval->setText("oval");
+
+    shapesList->insertItem(0,square);
+    shapesList->insertItem(1,diamond);
+    shapesList->insertItem(2,trapezoid);
+    shapesList->insertItem(3, oval);
+
+    QGridLayout *listLayout = new QGridLayout();
+    QLabel *listLabel = new QLabel(tr("Shapes List"));
+
+    listLayout->addWidget(listLabel,0,1);
+    topLayout->addLayout(listLayout,0,3);
 
     //Dennis 3/25
     QGridLayout *myLayout = new QGridLayout;
