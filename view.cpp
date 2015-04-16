@@ -111,6 +111,17 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     QToolButton *addSquareButton = new QToolButton;
     addSquareButton->setText(tr("Square"));
 
+    //COLUMN 1
+    QGridLayout *col1 = new QGridLayout;
+    QLabel *placeHolder1 = new QLabel(tr("This is"));
+    QLabel *placeHolder2 = new QLabel(tr("just a"));
+    QLabel *placeHolder3 = new QLabel(tr("place"));
+    QLabel *placeHolder4 = new QLabel(tr("holder"));
+    col1->addWidget(placeHolder1, 1, 0, 1, 1);
+    col1->addWidget(placeHolder2, 2, 0, 1, 1);
+    col1->addWidget(placeHolder3, 3, 0, 1, 1);
+    col1->addWidget(placeHolder4, 4, 0, 1, 1);
+
     //TOOL BAR
     QLabel *zoomLabel = new QLabel(tr("Zoom"));
     QHBoxLayout *toolBar = new QHBoxLayout;
@@ -169,8 +180,9 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
     QGridLayout *topLayout = new QGridLayout;
     //topLayout->addLayout(labelLayout, 0, 0);
-    topLayout->addWidget(graphicsView, 1, 0);
-    topLayout->addLayout(toolBar, 0, 0, 1, 2);
+    topLayout->addLayout(col1, 1, 0, 1, 1);
+    topLayout->addWidget(graphicsView, 1, 1);
+    topLayout->addLayout(toolBar, 0, 1, 1, 2);
     setLayout(topLayout);
 
     //Michelle
@@ -193,8 +205,8 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     QGridLayout *listLayout = new QGridLayout();
     QLabel *listLabel = new QLabel(tr("Shapes List"));
 
-    listLayout->addWidget(listLabel,0,1);
-    topLayout->addLayout(listLayout,1,2);
+    //listLayout->addWidget(listLabel,0,1);
+    topLayout->addLayout(listLayout,1,3);
 
     //Dennis 3/25
     QGridLayout *myLayout = new QGridLayout;
@@ -226,7 +238,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
 
     //add to topLayout
-    topLayout->addLayout(myLayout,1,2);
+    topLayout->addLayout(myLayout,1,3);
 
     //connect stuff
     //connect(color, SIGNAL(clicked()), this, SLOT(editColor()));
