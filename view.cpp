@@ -212,7 +212,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     QGridLayout *myLayout = new QGridLayout;
 
     label = new QLabel(tr("<b>Properties</b>"));
-
+    label->setAlignment(Qt::AlignBottom);
 
     colorLabel = new QLabel(tr("Edit Color"));
     colorLabel->setAlignment(Qt::AlignBottom);
