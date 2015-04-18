@@ -21,6 +21,9 @@ public:
     void updateScene();
     void itemHere(QMouseEvent *event);
 
+public Q_SLOTS:
+    void shapeSelection();
+
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
 

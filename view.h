@@ -13,6 +13,7 @@ QT_BEGIN_NAMESPACE
 class QLabel;
 class QSlider;
 class QToolButton;
+class QListWidget;
 QT_END_NAMESPACE
 
 class View;
@@ -41,6 +42,7 @@ public:
     QGraphicsView *view() const;
     model *Model;
 
+    void itemSel(QListWidgetItem *item);
 
     void keyPressEvent(QKeyEvent *event);
 
@@ -88,5 +90,6 @@ private:
     QToolButton *zoomOutButton;
     QSlider *zoomSlider;
     QSlider *rotateSlider;
+    QListWidget *shapesList;
 };
 #endif // VIEW_H

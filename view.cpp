@@ -122,7 +122,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
 
     //Michelle
-    QListWidget *shapesList = new QListWidget();
+    shapesList = new QListWidget();
     QListWidgetItem *square = new QListWidgetItem();
     QListWidgetItem *diamond = new QListWidgetItem();
     QListWidgetItem *trapezoid = new QListWidgetItem();
@@ -139,8 +139,9 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     shapesList->insertItem(4, trapezoid);
     shapesList->insertItem(5, oval);
 
-    QGridLayout *listLayout = new QGridLayout();
     QLabel *shapesListLabel = new QLabel(tr("<b>Insert Shape</b>"));
+
+
 
 
     //COLUMN 1. This is the Insert Shapes Column
@@ -278,7 +279,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
 
     connect(addSquareButton, SIGNAL(clicked()), this, SLOT(addSquare()));
-
+    connect(shapesList, SIGNAL(itemPressed(QListWidgetItem)), this, SLOT(itemSel(QListWidgetItem)));
     connect(resetButton, SIGNAL(clicked()), this, SLOT(resetView()));
     connect(zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(setupMatrix()));
     connect(rotateSlider, SIGNAL(valueChanged(int)), this, SLOT(setupMatrix()));
@@ -293,6 +294,12 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     connect(zoomOutButton, SIGNAL(clicked()), this, SLOT(zoomOut()));
 
     setupMatrix();
+}
+
+void View::itemSel(QListWidgetItem *item)
+{
+    std::cout <<"slkdjafla"<<std::endl;
+    return;
 }
 
 void View::keyPressEvent(QKeyEvent * event)
