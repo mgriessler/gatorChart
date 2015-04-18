@@ -40,7 +40,6 @@ public:
     QGraphicsView *view() const;
     model *Model;
     void keyPressEvent(QKeyEvent *event);
-    void mousePressEvent(QMouseEvent *event);
 public slots:
     void zoomIn(int level = 1);
     void zoomOut(int level = 1);
@@ -60,7 +59,6 @@ private slots:
     void editColor();
     void addLabel();
     void openFile();
-
 
 private:
     GraphicsView *graphicsView;

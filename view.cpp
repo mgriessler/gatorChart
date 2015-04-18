@@ -305,13 +305,13 @@ void View::keyPressEvent(QKeyEvent * event)
 {
     std::cout<<"key: "<<event->key()<<std::endl;
 }
-
+/*
 void View::mousePressEvent(QMouseEvent *event)
 {
     std::cout<<"pressed mouse"<<std::endl;
     Model->itemHere(event);
 }
-
+*/
 void View::addSquare()
 {
     Model->create();

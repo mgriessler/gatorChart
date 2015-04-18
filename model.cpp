@@ -4,6 +4,7 @@
 #include "parallelogram.h"
 #include "oval.h"
 #include <iostream>
+#include <QGraphicsSceneMouseEvent>
 
 /*********************************************************
  * the purpose of the model is to maintain all components that make up the flowchart
@@ -21,6 +22,7 @@
 */
 model::model()
 {
+    act = Action_MoveObject;
 }
 
 void model::create()
@@ -63,6 +65,57 @@ void model::itemHere(QMouseEvent *event)
             std::cout << "You didn't click on an item." << std::endl;
     }
 }
+
+void model::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
+{
+    if (mouseEvent->button() != Qt::LeftButton) {
+        std::cout << "not left key pressed" << std::endl;
+        return;
+    }
+    else
+    {
+        std::cout << "left key pressed" << std::endl;
+    }
+
+    return;
+    /*
+    DiagramItem *item;
+    switch (myMode) {
+        case InsertItem:
+            item = new DiagramItem(myItemType, myItemMenu);
+            item->setBrush(myItemColor);
+            addItem(item);
+            item->setPos(mouseEvent->scenePos());
+            emit itemInserted(item);
+            break;
+//! [6] //! [7]
+        case InsertLine:
+            line = new QGraphicsLineItem(QLineF(mouseEvent->scenePos(),
+                                        mouseEvent->scenePos()));
+            line->setPen(QPen(myLineColor, 2));
+            addItem(line);
+            break;
+//! [7] //! [8]
+        case InsertText:
+            textItem = new DiagramTextItem();
+            textItem->setFont(myFont);
+            textItem->setTextInteractionFlags(Qt::TextEditorInteraction);
+            textItem->setZValue(1000.0);
+            connect(textItem, SIGNAL(lostFocus(DiagramTextItem*)),
+                    this, SLOT(editorLostFocus(DiagramTextItem*)));
+            connect(textItem, SIGNAL(selectedChange(QGraphicsItem*)),
+                    this, SIGNAL(itemSelected(QGraphicsItem*)));
+            addItem(textItem);
+            textItem->setDefaultTextColor(myTextColor);
+            textItem->setPos(mouseEvent->scenePos());
+            emit textInserted(textItem);
+//! [8] //! [9]
+    default:
+        ;
+    }*/
+    QGraphicsScene::mousePressEvent(mouseEvent);
+}
+
 
 void model::updateScene()
 {
