@@ -202,15 +202,16 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     trapezoid->setText("trapezoid");
     oval->setText("oval");
 
+
     shapesList->insertItem(0,square);
     shapesList->insertItem(1,diamond);
     shapesList->insertItem(2,trapezoid);
     shapesList->insertItem(3, oval);
 
     QGridLayout *listLayout = new QGridLayout();
-    QLabel *listLabel = new QLabel(tr("Shapes List"));
+    //QLabel *listLabel = new QLabel(tr("Shapes List"));
 
-    //listLayout->addWidget(listLabel,0,1);
+    listLayout->addWidget(shapesList,0,1);
     topLayout->addLayout(listLayout,1,3);
 
     //Dennis
