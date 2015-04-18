@@ -297,7 +297,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
 void View::itemSel(QListWidgetItem *item)
 {
-    std::cout <<"slkdjafla"<<std::endl;
+    Model->create(item);
     return;
 }
 
@@ -305,19 +305,12 @@ void View::keyPressEvent(QKeyEvent * event)
 {
     std::cout<<"key: "<<event->key()<<std::endl;
 }
-/*
-void View::mousePressEvent(QMouseEvent *event)
-{
-    std::cout<<"pressed mouse"<<std::endl;
-    Model->itemHere(event);
-}
-*/
-void View::addSquare()
+/*void View::addSquare()
 {
     Model->create();
     //do nothing for now
 }
-
+*/
 void View::myClose()
 {
     QApplication::exit();
