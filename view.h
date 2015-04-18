@@ -43,11 +43,12 @@ public:
 
 
     void keyPressEvent(QKeyEvent *event);
-public slots:
+
+public Q_SLOTS:
     void zoomIn(int level = 1);
     void zoomOut(int level = 1);
 
-private slots:
+private Q_SLOTS:
     void print();
     void resetView();
     void setResetButtonEnabled();
