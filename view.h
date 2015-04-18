@@ -6,6 +6,7 @@
 #include <QGraphicsView>
 #include "model.h"
 #include "square.h"
+#include "mainwindow.h"
 #include <QListWidget>
 
 QT_BEGIN_NAMESPACE
@@ -39,6 +40,8 @@ public:
 
     QGraphicsView *view() const;
     model *Model;
+
+
     void keyPressEvent(QKeyEvent *event);
 public slots:
     void zoomIn(int level = 1);
@@ -66,7 +69,7 @@ private:
     QMenu *menu;
     QMenu *menu2;
     QMenu *menu3;
-    QFile *file1;
+    //QFile *file;
     QAction *exitAction;
     QAction *newAction;
     QAction *printAction;

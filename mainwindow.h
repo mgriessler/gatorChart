@@ -16,6 +16,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     QGraphicsScene *scene;
 
+
 private:
     model *Model;
     void setupMatrix();

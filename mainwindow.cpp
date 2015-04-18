@@ -4,6 +4,7 @@
 
 #include <QtWidgets>
 #include <QHBoxLayout>
+#include <QTextEdit>
 
 /*********
  * Here the view is initialized
@@ -23,3 +24,5 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowTitle(tr("Gator Chart"));
 }
+
+

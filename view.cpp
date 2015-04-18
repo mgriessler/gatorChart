@@ -17,7 +17,10 @@
 #include<QLabel>
 #include <QMenu>
 #include <QApplication>
+#include<QTextStream>
 #include<QFile>
+#include <QTextEdit>
+
 
 //Michelle
 #include <QListWidget>
@@ -168,7 +171,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     resetButton->setEnabled(false);
 
     // Label layout
-    QHBoxLayout *labelLayout = new QHBoxLayout;
+    //QHBoxLayout *labelLayout = new QHBoxLayout;
     QToolButton *selectModeButton = new QToolButton;
     selectModeButton->setText(tr("Select"));
     selectModeButton->setCheckable(true);
@@ -333,10 +336,9 @@ void View::addLabel()
 void View::openFile()
 {
 
-    //QFile file1("test.txt");
-    //file1.open(QIODevice::ReadOnly);
 
 }
+
 
 void View::editColor()
 {
