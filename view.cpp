@@ -262,7 +262,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
     //Help Menu Actions
     menu3 = menu_bar->addMenu("Help");
-    helpAction = new QAction(tr("Manual"), this);
+    helpAction = new QAction(tr("Tutorial"), this);
     connect(helpAction, SIGNAL(triggered()), this, SLOT(openFile()));
     menu3->addAction(helpAction);
 
