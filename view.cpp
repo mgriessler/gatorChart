@@ -119,16 +119,34 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     QToolButton *addSquareButton = new QToolButton;
     addSquareButton->setText(tr("Square"));
 
-    //COLUMN 1
+
+
+    //Michelle
+    QListWidget *shapesList = new QListWidget();
+    QListWidgetItem *square = new QListWidgetItem();
+    QListWidgetItem *diamond = new QListWidgetItem();
+    QListWidgetItem *trapezoid = new QListWidgetItem();
+    QListWidgetItem *oval = new QListWidgetItem();
+
+    square->setText("square");
+    diamond->setText("diamond");
+    trapezoid->setText("trapezoid");
+    oval->setText("oval");
+
+
+    shapesList->insertItem(2, square);
+    shapesList->insertItem(3, diamond);
+    shapesList->insertItem(4, trapezoid);
+    shapesList->insertItem(5, oval);
+
+    QGridLayout *listLayout = new QGridLayout();
+    QLabel *shapesListLabel = new QLabel(tr("<b>Insert Shape</b>"));
+
+
+    //COLUMN 1. This is the Insert Shapes Column
     QGridLayout *col1 = new QGridLayout;
-    QLabel *placeHolder1 = new QLabel(tr("This is"));
-    QLabel *placeHolder2 = new QLabel(tr("just a"));
-    QLabel *placeHolder3 = new QLabel(tr("place"));
-    QLabel *placeHolder4 = new QLabel(tr("holder"));
-    col1->addWidget(placeHolder1, 1, 0, 1, 1);
-    col1->addWidget(placeHolder2, 2, 0, 1, 1);
-    col1->addWidget(placeHolder3, 3, 0, 1, 1);
-    col1->addWidget(placeHolder4, 4, 0, 1, 1);
+    col1->addWidget(shapesListLabel, 0, 0, 1, 1);
+    col1->addWidget(shapesList, 1, 0, 1, 1);
 
     //TOOL BAR
     QLabel *zoomLabel = new QLabel(tr("Zoom"));
@@ -181,41 +199,14 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     dragModeButton->setCheckable(true);
     dragModeButton->setChecked(false);
 
-  //  labelLayout->addStretch();
-  //  labelLayout->addWidget(label2);
-  //  labelLayout->addStretch();
-  //  labelLayout->addWidget(addSquareButton);
-
+    //TopLayout is the final layout
     QGridLayout *topLayout = new QGridLayout;
-    //topLayout->addLayout(labelLayout, 0, 0);
-    topLayout->addLayout(col1, 1, 0, 1, 1);
     topLayout->addWidget(graphicsView, 1, 1);
     topLayout->addLayout(toolBar, 0, 1, 1, 2);
+    topLayout->addLayout(col1, 1, 0, 1, 1);
     setLayout(topLayout);
 
-    //Michelle
-    QListWidget *shapesList = new QListWidget();
-    QListWidgetItem *square = new QListWidgetItem();
-    QListWidgetItem *diamond = new QListWidgetItem();
-    QListWidgetItem *trapezoid = new QListWidgetItem();
-    QListWidgetItem *oval = new QListWidgetItem();
 
-    square->setText("square");
-    diamond->setText("diamond");
-    trapezoid->setText("trapezoid");
-    oval->setText("oval");
-
-
-    shapesList->insertItem(0,square);
-    shapesList->insertItem(1,diamond);
-    shapesList->insertItem(2,trapezoid);
-    shapesList->insertItem(3, oval);
-
-    QGridLayout *listLayout = new QGridLayout();
-    //QLabel *listLabel = new QLabel(tr("Shapes List"));
-
-    listLayout->addWidget(shapesList,0,1);
-    topLayout->addLayout(listLayout,1,3);
 
     //Dennis
     QGridLayout *myLayout = new QGridLayout;
@@ -270,7 +261,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     connect(helpAction, SIGNAL(triggered()), this, SLOT(openFile()));
     menu3->addAction(helpAction);
 
-    topLayout->addWidget(menu_bar,0,0);
+    topLayout->addWidget(menu_bar, 0, 0, 1, 1);
 
 
     //add to topLayout
