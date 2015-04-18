@@ -42,12 +42,11 @@ public:
     QGraphicsView *view() const;
     model *Model;
 
-    void itemSel(QListWidgetItem *item);
-
     void keyPressEvent(QKeyEvent *event);
 
 public Q_SLOTS:
     void zoomIn(int level = 1);
+    void itemSel(QListWidgetItem *item);
     void zoomOut(int level = 1);
 
 private Q_SLOTS:

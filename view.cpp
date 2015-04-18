@@ -279,7 +279,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
 
     connect(addSquareButton, SIGNAL(clicked()), this, SLOT(addSquare()));
-    connect(shapesList, SIGNAL(itemPressed(QListWidgetItem)), this, SLOT(itemSel(QListWidgetItem)));
+    connect(shapesList, SIGNAL(itemPressed(QListWidgetItem*)), this, SLOT(itemSel(QListWidgetItem*)));
     connect(resetButton, SIGNAL(clicked()), this, SLOT(resetView()));
     connect(zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(setupMatrix()));
     connect(rotateSlider, SIGNAL(valueChanged(int)), this, SLOT(setupMatrix()));
