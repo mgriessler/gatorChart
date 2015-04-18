@@ -25,13 +25,29 @@ model::model()
     act = Action_MoveObject;
 }
 
-void model::create()
+void model::create(QListWidgetItem *thing)
 {
     std::cout<<"Add element to scene"<<std::endl;
     QColor color(QColor(Qt::red));
     qreal x = 700;
     qreal y = 700;
-    QGraphicsItem *item = new Oval(color, x, y);
+   QGraphicsItem *item;\
+    if(thing->text() == "square")
+    {
+         item = new Square(color, x, y);
+    }
+    else if(thing->text() == "oval")
+    {
+         item = new Oval(color, x, y);
+    }
+    else if(thing->text() == "diamond")
+    {
+         item = new Diamond(color, x, y);
+    }
+    else
+    {
+         item = new Trap(color, x, y);
+    }
     item->setPos(QPointF(100, 100));
     addItem(item);
 }

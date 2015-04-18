@@ -58,7 +58,7 @@ private Q_SLOTS:
     void rotateLeft();
     void rotateRight();
 
-    void addSquare();
+    //void addSquare();
     void myClose();
     void editColor();
     void addLabel();

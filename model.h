@@ -15,7 +15,7 @@ public:
     QGraphicsScene scene;
     enum DesiredAction {Action_CreateShape, Action_CreateLine, Action_MoveObject};
 
-    void create();
+    void create(QListWidgetItem *item);
     void label();
     void createRect(QColor color, qreal x, qreal y);
     void updateScene();
