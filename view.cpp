@@ -1,4 +1,6 @@
 #include "view.h"
+#include <string>
+#include<fstream>
 
 #ifndef QT_NO_OPENGL
 #include <QtOpenGL>
@@ -7,12 +9,15 @@
 #endif
 #include <qmath.h>
 
-//Dennis 3/25
+//Dennis
 #include <QLayout>
 #include <QtGui>
 #include<QtCore>
 #include <QBoxLayout>
 #include<QLabel>
+#include <QMenu>
+#include <QApplication>
+#include<QFile>
 
 //Michelle
 #include <QListWidget>
@@ -208,7 +213,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     //listLayout->addWidget(listLabel,0,1);
     topLayout->addLayout(listLayout,1,3);
 
-    //Dennis 3/25
+    //Dennis
     QGridLayout *myLayout = new QGridLayout;
 
     label = new QLabel(tr("<b>Properties</b>"));
@@ -227,6 +232,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
 
 
+
     QToolButton *text = new QToolButton;
     text->setText(tr("Add Label"));
     //Adding widgets to myLayout
@@ -236,9 +242,40 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     myLayout->addWidget(combo,2,1);
 
 
+    //menubar
+    menu_bar = new QMenuBar();
+    menu = menu_bar->addMenu("File");
+    //File menu Actions
+    exitAction = new QAction(tr("Exit"), this);
+    connect(exitAction, SIGNAL(triggered()), this, SLOT(myClose()));
+    menu->addAction(exitAction);
+
+    newAction = new QAction(tr("New"), this);
+    connect(newAction, SIGNAL(triggered()), this, SLOT(myClose()));
+    menu->addAction(newAction);
+
+    //Print Menu Actions
+    menu2 = menu_bar->addMenu("Print");
+    printAction = new QAction(tr("Print"), this);
+    connect(printAction, SIGNAL(triggered()), this, SLOT(print()));
+    menu2->addAction(printAction);
+
+    //Help Menu Actions
+    menu3 = menu_bar->addMenu("Help");
+    helpAction = new QAction(tr("Manual"), this);
+    connect(helpAction, SIGNAL(triggered()), this, SLOT(openFile()));
+    menu3->addAction(helpAction);
+
+    topLayout->addWidget(menu_bar,0,0);
+
 
     //add to topLayout
     topLayout->addLayout(myLayout,1,3);
+
+
+
+
+
 
     //connect stuff
     //connect(color, SIGNAL(clicked()), this, SLOT(editColor()));
@@ -280,6 +317,11 @@ void View::addSquare()
     //do nothing for now
 }
 
+void View::myClose()
+{
+    QApplication::exit();
+}
+
 
 void View::addLabel()
 {
@@ -287,10 +329,17 @@ void View::addLabel()
 
 }
 
+void View::openFile()
+{
+
+    //QFile file1("test.txt");
+    //file1.open(QIODevice::ReadOnly);
+
+}
+
 void View::editColor()
 {
-    //Model->create();
-    //do nothing for now
+
 }
 
 

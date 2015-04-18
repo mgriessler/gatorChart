@@ -56,13 +56,23 @@ private slots:
     void rotateRight();
 
     void addSquare();
-
+    void myClose();
     void editColor();
     void addLabel();
+    void openFile();
 
 
 private:
     GraphicsView *graphicsView;
+    QMenuBar *menu_bar;
+    QMenu *menu;
+    QMenu *menu2;
+    QMenu *menu3;
+    QFile *file1;
+    QAction *exitAction;
+    QAction *newAction;
+    QAction *printAction;
+    QAction *helpAction;
     QLabel *label;
     QLabel *label2;
     QLabel *colorLabel;

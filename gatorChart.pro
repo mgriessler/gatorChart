@@ -38,3 +38,6 @@ HEADERS  += mainwindow.h \
     diamond.h \
     parallelogram.h \
     oval.h
+
+DISTFILES += \
+    text.txt
