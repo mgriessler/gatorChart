@@ -289,7 +289,6 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
             this, SLOT(setResetButtonEnabled()));
     connect(selectModeButton, SIGNAL(toggled(bool)), this, SLOT(togglePointerMode()));
     connect(dragModeButton, SIGNAL(toggled(bool)), this, SLOT(togglePointerMode()));
-    connect(antialiasButton, SIGNAL(toggled(bool)), this, SLOT(toggleAntialiasing()));
     connect(zoomInButton, SIGNAL(clicked()), this, SLOT(zoomIn()));
     connect(zoomOutButton, SIGNAL(clicked()), this, SLOT(zoomOut()));
 
@@ -382,11 +381,6 @@ void View::togglePointerMode()
                               ? QGraphicsView::RubberBandDrag
                               : QGraphicsView::ScrollHandDrag);
     graphicsView->setInteractive(selectModeButton->isChecked());
-}
-
-void View::toggleAntialiasing()
-{
-    graphicsView->setRenderHint(QPainter::Antialiasing, antialiasButton->isChecked());
 }
 
 void View::zoomIn(int level)

@@ -77,7 +77,6 @@ void model::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         std::cout << "left key pressed" << std::endl;
     }
     std::cout << "(" << mouseEvent->scenePos().x() << "," << mouseEvent->scenePos().y() << ")" << std::endl;
-    return;
     /*
     DiagramItem *item;
     switch (myMode) {
@@ -114,6 +113,7 @@ void model::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         ;
     }*/
     QGraphicsScene::mousePressEvent(mouseEvent);
+    return;
 }
 
 

@@ -16,14 +16,14 @@ Oval::Oval(const QColor &color, int x,int y)
 QRectF Oval::boundingRect() const
 {
 
-    return QRectF(0,0,110,100);
+    return QRectF(0,0,90,40);
 
 }
 
 QPainterPath Oval::shape() const
 {
     QPainterPath path;
-    path.addRect(14,14,82,82);
+    path.addRect(0,0,90,40);
     return path;
 }
 

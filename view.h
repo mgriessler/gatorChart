@@ -55,7 +55,6 @@ private Q_SLOTS:
     void setResetButtonEnabled();
     void setupMatrix();
     void togglePointerMode();
-    void toggleAntialiasing();
     void rotateLeft();
     void rotateRight();
 
