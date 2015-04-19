@@ -270,9 +270,6 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
 
 
-
-
-
     //connect stuff
     //connect(color, SIGNAL(clicked()), this, SLOT(editColor()));
     connect(text, SIGNAL(clicked()), this, SLOT(addLabel()));
@@ -321,23 +318,20 @@ void View::openFile()
 {
     QWidget *w = new QWidget;
     w->setWindowTitle("Tutorial");
-    QFile file("C:\\Users\\Dennis\\Desktop\\COP3503\\text.txt");
-    //QFile file("GitHub\\text.txt");
+    //QFile file("C:\\Users\\Dennis\\Desktop\\COP3503\\tutorial.txt");
+    QFile file("tutorial.txt");
     file.open(QIODevice::ReadOnly);
     QTextStream in(&file);
     QString line = in.readAll();
     QTextBrowser *content = new QTextBrowser;
     content->setText(line);
-    QGridLayout *t = new QGridLayout;
+    QHBoxLayout *t = new QHBoxLayout;
     w->setLayout(t);
-    t->addWidget(content,1,1);
+    t->addWidget(content);
     w->show();
 }
 
-void View::newChart(QGridLayout *topLayout)
-{
 
-}
 
 void View::editColor()
 {
