@@ -115,6 +115,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     pointerModeGroup->setExclusive(true);
     pointerModeGroup->addButton(selectModeButton);
     pointerModeGroup->addButton(dragModeButton);
+    pointerModeGroup->addButton(addConnectorButton);
 
     /*QToolButton *addSquareButton = new QToolButton;
     addSquareButton->setText(tr("Square"));*/
@@ -163,8 +164,6 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     toolBar->addWidget(zoomInButton);
     toolBar->addWidget(zoomOutButton);
     toolBar->setAlignment(zoomOutButton, Qt::AlignLeft);
-    //toolBar->addWidget(addSquareButton);
-    //toolBar->setAlignment(addSquareButton, Qt::AlignRight);
 
     QToolButton *rotateLeftIcon = new QToolButton;
     rotateLeftIcon->setIcon(QPixmap(":/rotateleft.png"));
@@ -247,7 +246,8 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     menu->addAction(exitAction);
 
     newAction = new QAction(tr("New"), this);
-    connect(newAction, SIGNAL(triggered()), this, SLOT(myClose()));
+    //connect(newAction, SIGNAL(triggered()), this, SLOT(newChart(topLayout)));
+    connect(newAction, SIGNAL(triggered()), this, SLOT(resetView()));
     menu->addAction(newAction);
 
     //Print Menu Actions
@@ -278,7 +278,6 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     connect(text, SIGNAL(clicked()), this, SLOT(addLabel()));
 
 
-    //connect(addSquareButton, SIGNAL(clicked()), this, SLOT(addSquare()));
     connect(shapesList, SIGNAL(itemPressed(QListWidgetItem*)), this, SLOT(itemSel(QListWidgetItem*)));
     connect(resetButton, SIGNAL(clicked()), this, SLOT(resetView()));
     connect(zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(setupMatrix()));
@@ -305,12 +304,7 @@ void View::keyPressEvent(QKeyEvent * event)
 {
     std::cout<<"key: "<<event->key()<<std::endl;
 }
-/*void View::addSquare()
-{
-    Model->create();
-    //do nothing for now
-}
-*/
+
 void View::myClose()
 {
     QApplication::exit();
@@ -325,10 +319,25 @@ void View::addLabel()
 
 void View::openFile()
 {
-
-
+    QWidget *w = new QWidget;
+    w->setWindowTitle("Tutorial");
+    QFile file("C:\\Users\\Dennis\\Desktop\\COP3503\\text.txt");
+    //QFile file("GitHub\\text.txt");
+    file.open(QIODevice::ReadOnly);
+    QTextStream in(&file);
+    QString line = in.readAll();
+    QTextBrowser *content = new QTextBrowser;
+    content->setText(line);
+    QGridLayout *t = new QGridLayout;
+    w->setLayout(t);
+    t->addWidget(content,1,1);
+    w->show();
 }
 
+void View::newChart(QGridLayout *topLayout)
+{
+
+}
 
 void View::editColor()
 {
@@ -346,7 +355,9 @@ void View::resetView()
     zoomSlider->setValue(250);
     rotateSlider->setValue(0);
     setupMatrix();
+
     graphicsView->ensureVisible(QRectF(0, 0, 0, 0));
+    Model->clear();
 
     resetButton->setEnabled(false);
 }
@@ -366,6 +377,20 @@ void View::setupMatrix()
 
     graphicsView->setMatrix(matrix);
     setResetButtonEnabled();
+}
+
+void View::setRubberBandDragAndInteractive()
+{
+    std::cout<<"Select button"<<std::endl;
+    graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
+    graphicsView->setInteractive(selectModeButton->isChecked());
+}
+
+void View::setScrollHandDrag()
+{
+    std::cout<<"Drag button"<<std::endl;
+    graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
+    graphicsView->setInteractive(selectModeButton->isChecked());
 }
 
 void View::togglePointerMode()
@@ -398,7 +423,7 @@ void View::rotateRight()
 
 void View::print()
 {
-    std::cout<<"hola"<<std::endl;
+    std::cout<<"printing"<<std::endl;
     QPrinter printer;
     if (QPrintDialog(&printer).exec() == QDialog::Accepted) {
         QPainter painter(&printer);

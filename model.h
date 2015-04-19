@@ -13,7 +13,7 @@ public:
     model();
 
     QGraphicsScene scene;
-    enum DesiredAction {Action_CreateShape, Action_CreateLine, Action_MoveObject};
+    enum DesiredAction {Action_CreateShape, Action_CreateLineStart, Action_CreateLineEnd, Action_MoveObject};
 
     void create(QListWidgetItem *item);
     void label();

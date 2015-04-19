@@ -39,5 +39,4 @@ HEADERS  += mainwindow.h \
     parallelogram.h \
     oval.h
 
-DISTFILES += \
-    text.txt
+DISTFILES +=

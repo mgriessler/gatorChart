@@ -31,7 +31,7 @@ void model::create(QListWidgetItem *thing)
     QColor color(QColor(Qt::red));
     qreal x = 700;
     qreal y = 700;
-   QGraphicsItem *item;\
+   QGraphicsItem *item;
     if(thing->text() == "square")
     {
          item = new Square(color, x, y);
@@ -93,6 +93,7 @@ void model::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         std::cout << "left key pressed" << std::endl;
     }
     std::cout << "(" << mouseEvent->scenePos().x() << "," << mouseEvent->scenePos().y() << ")" << std::endl;
+    std::cout <<act<<std::endl;
     QGraphicsScene::mousePressEvent(mouseEvent);
     return;
 }

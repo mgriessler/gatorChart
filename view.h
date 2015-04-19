@@ -55,14 +55,16 @@ private Q_SLOTS:
     void setResetButtonEnabled();
     void setupMatrix();
     void togglePointerMode();
+    void setScrollHandDrag();
+    void setRubberBandDragAndInteractive();
     void rotateLeft();
     void rotateRight();
 
-    //void addSquare();
     void myClose();
     void editColor();
     void addLabel();
     void openFile();
+    void newChart(QGridLayout *topLayout);
 
 private:
     GraphicsView *graphicsView;
@@ -78,7 +80,7 @@ private:
     QLabel *label;
     QLabel *label2;
     QLabel *colorLabel;
-    //QToolButton *addSquareButton;
+
     QToolButton *selectModeButton;
     QToolButton *dragModeButton;
     QToolButton *antialiasButton;
