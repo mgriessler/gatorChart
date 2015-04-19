@@ -47,6 +47,7 @@ public:
 public Q_SLOTS:
     void zoomIn(int level = 1);
     void itemSel(QListWidgetItem *item);
+    void save();
     void zoomOut(int level = 1);
 
 private Q_SLOTS:
@@ -81,6 +82,7 @@ private:
     QLabel *label2;
     QLabel *colorLabel;
 
+    QToolButton *saveButton;
     QToolButton *selectModeButton;
     QToolButton *dragModeButton;
     QToolButton *antialiasButton;

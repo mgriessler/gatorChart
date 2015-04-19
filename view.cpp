@@ -117,8 +117,9 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     pointerModeGroup->addButton(dragModeButton);
     pointerModeGroup->addButton(addConnectorButton);
 
-    /*QToolButton *addSquareButton = new QToolButton;
-    addSquareButton->setText(tr("Square"));*/
+    saveButton = new QToolButton;
+    saveButton->setText(tr("Save"));
+    saveButton->setAutoRepeat(true);
 
 
 
@@ -164,6 +165,8 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     toolBar->addWidget(zoomInButton);
     toolBar->addWidget(zoomOutButton);
     toolBar->setAlignment(zoomOutButton, Qt::AlignLeft);
+    //
+    toolBar->addWidget(saveButton);
 
     QToolButton *rotateLeftIcon = new QToolButton;
     rotateLeftIcon->setIcon(QPixmap(":/rotateleft.png"));
@@ -287,6 +290,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     connect(dragModeButton, SIGNAL(toggled(bool)), this, SLOT(togglePointerMode()));
     connect(zoomInButton, SIGNAL(clicked()), this, SLOT(zoomIn()));
     connect(zoomOutButton, SIGNAL(clicked()), this, SLOT(zoomOut()));
+    connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
 
     setupMatrix();
 }
@@ -294,6 +298,11 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 void View::itemSel(QListWidgetItem *item)
 {
     Model->create(item);
+    return;
+}
+void View::save()
+{
+    Model->theSaveList();
     return;
 }
 
