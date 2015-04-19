@@ -116,8 +116,8 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     pointerModeGroup->addButton(selectModeButton);
     pointerModeGroup->addButton(dragModeButton);
 
-    QToolButton *addSquareButton = new QToolButton;
-    addSquareButton->setText(tr("Square"));
+    /*QToolButton *addSquareButton = new QToolButton;
+    addSquareButton->setText(tr("Square"));*/
 
 
 
@@ -163,8 +163,8 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     toolBar->addWidget(zoomInButton);
     toolBar->addWidget(zoomOutButton);
     toolBar->setAlignment(zoomOutButton, Qt::AlignLeft);
-    toolBar->addWidget(addSquareButton);
-    toolBar->setAlignment(addSquareButton, Qt::AlignRight);
+    //toolBar->addWidget(addSquareButton);
+    //toolBar->setAlignment(addSquareButton, Qt::AlignRight);
 
     QToolButton *rotateLeftIcon = new QToolButton;
     rotateLeftIcon->setIcon(QPixmap(":/rotateleft.png"));
@@ -278,7 +278,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     connect(text, SIGNAL(clicked()), this, SLOT(addLabel()));
 
 
-    connect(addSquareButton, SIGNAL(clicked()), this, SLOT(addSquare()));
+    //connect(addSquareButton, SIGNAL(clicked()), this, SLOT(addSquare()));
     connect(shapesList, SIGNAL(itemPressed(QListWidgetItem*)), this, SLOT(itemSel(QListWidgetItem*)));
     connect(resetButton, SIGNAL(clicked()), this, SLOT(resetView()));
     connect(zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(setupMatrix()));
