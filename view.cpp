@@ -247,7 +247,8 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     menu->addAction(exitAction);
 
     newAction = new QAction(tr("New"), this);
-    connect(newAction, SIGNAL(triggered()), this, SLOT(myClose()));
+    //connect(newAction, SIGNAL(triggered()), this, SLOT(newChart(topLayout)));
+    connect(newAction, SIGNAL(triggered()), this, SLOT(resetView()));
     menu->addAction(newAction);
 
     //Print Menu Actions
@@ -325,10 +326,25 @@ void View::addLabel()
 
 void View::openFile()
 {
-
-
+    QWidget *w = new QWidget;
+    w->setWindowTitle("Tutorial");
+    QFile file("C:\\Users\\Dennis\\Desktop\\COP3503\\text.txt");
+    //QFile file("GitHub\\text.txt");
+    file.open(QIODevice::ReadOnly);
+    QTextStream in(&file);
+    QString line = in.readAll();
+    QTextBrowser *content = new QTextBrowser;
+    content->setText(line);
+    QGridLayout *t = new QGridLayout;
+    w->setLayout(t);
+    t->addWidget(content,1,1);
+    w->show();
 }
 
+void View::newChart(QGridLayout *topLayout)
+{
+
+}
 
 void View::editColor()
 {
@@ -346,7 +362,9 @@ void View::resetView()
     zoomSlider->setValue(250);
     rotateSlider->setValue(0);
     setupMatrix();
+
     graphicsView->ensureVisible(QRectF(0, 0, 0, 0));
+    Model->clear();
 
     resetButton->setEnabled(false);
 }

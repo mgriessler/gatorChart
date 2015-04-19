@@ -63,6 +63,7 @@ private Q_SLOTS:
     void editColor();
     void addLabel();
     void openFile();
+    void newChart(QGridLayout *topLayout);
 
 private:
     GraphicsView *graphicsView;
