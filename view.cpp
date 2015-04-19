@@ -115,6 +115,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     pointerModeGroup->setExclusive(true);
     pointerModeGroup->addButton(selectModeButton);
     pointerModeGroup->addButton(dragModeButton);
+    pointerModeGroup->addButton(addConnectorButton);
 
     QToolButton *addSquareButton = new QToolButton;
     addSquareButton->setText(tr("Square"));
@@ -163,8 +164,6 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     toolBar->addWidget(zoomInButton);
     toolBar->addWidget(zoomOutButton);
     toolBar->setAlignment(zoomOutButton, Qt::AlignLeft);
-    toolBar->addWidget(addSquareButton);
-    toolBar->setAlignment(addSquareButton, Qt::AlignRight);
 
     QToolButton *rotateLeftIcon = new QToolButton;
     rotateLeftIcon->setIcon(QPixmap(":/rotateleft.png"));
@@ -279,7 +278,6 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     connect(text, SIGNAL(clicked()), this, SLOT(addLabel()));
 
 
-    connect(addSquareButton, SIGNAL(clicked()), this, SLOT(addSquare()));
     connect(shapesList, SIGNAL(itemPressed(QListWidgetItem*)), this, SLOT(itemSel(QListWidgetItem*)));
     connect(resetButton, SIGNAL(clicked()), this, SLOT(resetView()));
     connect(zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(setupMatrix()));
@@ -306,12 +304,7 @@ void View::keyPressEvent(QKeyEvent * event)
 {
     std::cout<<"key: "<<event->key()<<std::endl;
 }
-/*void View::addSquare()
-{
-    Model->create();
-    //do nothing for now
-}
-*/
+
 void View::myClose()
 {
     QApplication::exit();
@@ -386,6 +379,20 @@ void View::setupMatrix()
     setResetButtonEnabled();
 }
 
+void View::setRubberBandDragAndInteractive()
+{
+    std::cout<<"Select button"<<std::endl;
+    graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
+    graphicsView->setInteractive(selectModeButton->isChecked());
+}
+
+void View::setScrollHandDrag()
+{
+    std::cout<<"Drag button"<<std::endl;
+    graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
+    graphicsView->setInteractive(selectModeButton->isChecked());
+}
+
 void View::togglePointerMode()
 {
     graphicsView->setDragMode(selectModeButton->isChecked()
@@ -416,7 +423,7 @@ void View::rotateRight()
 
 void View::print()
 {
-    std::cout<<"hola"<<std::endl;
+    std::cout<<"printing"<<std::endl;
     QPrinter printer;
     if (QPrintDialog(&printer).exec() == QDialog::Accepted) {
         QPainter painter(&printer);

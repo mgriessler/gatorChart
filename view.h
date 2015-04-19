@@ -55,10 +55,11 @@ private Q_SLOTS:
     void setResetButtonEnabled();
     void setupMatrix();
     void togglePointerMode();
+    void setScrollHandDrag();
+    void setRubberBandDragAndInteractive();
     void rotateLeft();
     void rotateRight();
 
-    //void addSquare();
     void myClose();
     void editColor();
     void addLabel();
@@ -79,7 +80,6 @@ private:
     QLabel *label;
     QLabel *label2;
     QLabel *colorLabel;
-    QToolButton *addSquareButton;
     QToolButton *selectModeButton;
     QToolButton *dragModeButton;
     QToolButton *antialiasButton;
