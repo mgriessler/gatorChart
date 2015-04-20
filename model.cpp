@@ -208,6 +208,19 @@ void model::setColor(int c)
     it->setColor(c);
 }
 
+void model::setDispText(QString text)
+{
+    std::cout<<"model addLabel"<<std::endl;
+    QList<QGraphicsItem *> list = selectedItems();
+    if(list.length()==0)
+    {
+        return;
+    }
+
+    Shape *it = qgraphicsitem_cast<Shape *>(list[0]);
+    it->setDispText(text);
+}
+
 void model::createRect(QColor color, qreal x, qreal y)
 {
     std::cout<<"Add rectangle to scene"<<std::endl;

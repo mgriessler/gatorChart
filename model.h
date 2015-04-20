@@ -29,6 +29,8 @@ public:
 
     void setColor(int c);
 
+    void setDispText(QString text);
+
     void createOpenShape(qreal x, qreal y, QString shapeName);
     void createOpenShape(qreal x, qreal y, QString shapeName, QString text);
 

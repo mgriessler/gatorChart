@@ -23,6 +23,7 @@ void Shape::addArrow(Arrow *arrow)
 void Shape::setDispText(QString text)
 {
     dispText = text;
+    update();
 }
 
 QString Shape::getDispText()

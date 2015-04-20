@@ -20,6 +20,7 @@ public:
     //void popUpCombo();
     void setColor(int n);
 
+
 private:
     QList<Arrow *> arrows;
 

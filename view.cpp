@@ -211,6 +211,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
     label = new QLabel(tr("<b>Properties</b>"));
     label->setAlignment(Qt::AlignBottom);
+    label->setAlignment(Qt::AlignCenter);
 
     colorLabel = new QLabel(tr("Edit Color"));
     colorLabel->setAlignment(Qt::AlignBottom);
@@ -236,6 +237,14 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     myLayout->addWidget(text, 3, 1);
     myLayout->addWidget(colorLabel, 1, 1);
     myLayout->addWidget(combo,2,1);
+
+    in = new QLineEdit;
+    myLayout->addWidget(in,4,1);
+
+    QToolButton *text2 = new QToolButton;
+    text2->setText("Add Label");
+    myLayout->addWidget(text2,5,1);
+
 
 
     //menubar
@@ -285,6 +294,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     //connect stuff
     //connect(color, SIGNAL(clicked()), this, SLOT(editColor()));
     connect(text, SIGNAL(clicked()), this, SLOT(edit()));
+    connect(text2, SIGNAL(clicked()), this, SLOT(addLabel()));
 
 
     connect(shapesList, SIGNAL(itemPressed(QListWidgetItem*)), this, SLOT(itemSel(QListWidgetItem*)));
@@ -367,6 +377,12 @@ void View::edit()
 {
     std::cout<<"View Edit"<<std::endl;
     Model->setColor(combo->currentIndex());
+}
+
+void View::addLabel()
+{
+    std::cout<<in->displayText().toStdString()<<std::endl;
+    Model->setDispText(in->displayText());
 }
 
 void View::openFile()

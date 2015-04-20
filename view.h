@@ -74,8 +74,11 @@ private Q_SLOTS:
     void addConnector();
     void deleteMode();
 
+    void addLabel();
+
 
 private:
+    QLineEdit *in;
     GraphicsView *graphicsView;
     QMenuBar *menu_bar;
     QMenu *menu;
@@ -91,7 +94,8 @@ private:
     QLabel *label;
     QLabel *label2;
     QLabel *colorLabel;
-     QComboBox *combo;
+    QComboBox *combo;
+
 
 
     QToolButton *saveButton;
