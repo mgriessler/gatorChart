@@ -93,7 +93,12 @@ void model::createOpenShape(qreal x, qreal y, QString shapeName)
 
 void model::openNewApplication()
 {
-    QFile file("flowchart.txt");
+    QFileDialog dialog;
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    QStringList fileNamer;
+    if (dialog.exec())
+        fileNamer = dialog.selectedFiles();
+    QFile file(fileNamer[0]);
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
     QTextStream in(&file);
@@ -114,12 +119,17 @@ void model::openNewApplication()
 
 void model::theSaveList()
 {
-    std::cout<<"You have reached theSaveList() level";
-    listActiveItems = items();
-    QFile file("flowchart.txt");
+    QFileDialog dialog;
+    dialog.setFileMode(QFileDialog::AnyFile);
+    QStringList fileNames;
+    if (dialog.exec())
+        fileNames = dialog.selectedFiles();
+
+    QFile file(fileNames[0]);
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
     QTextStream out(&file);
+    listActiveItems = items();
     Shape *it;
     for(int i=0; i<listActiveItems.size(); i++)
     {
