@@ -3,9 +3,9 @@
 
 #include <QColor>
 #include <QGraphicsItem>
+#include "shape.h"
 
-
-class Oval : public QGraphicsItem
+class Oval : public Shape
 {
 public:
     Oval(const QColor &color, int x, int y);

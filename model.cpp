@@ -146,16 +146,6 @@ void model::createRect(QColor color, qreal x, qreal y)
     addItem(item);
 }
 
-void model::itemHere(QMouseEvent *event)
-{
-    QTransform trans;
-    if (QGraphicsItem *item = itemAt(QPointF(100,100), trans)) {
-            std::cout << "You clicked on item" << item << std::endl;
-    } else {
-            std::cout << "You didn't click on an item." << std::endl;
-    }
-}
-
 void model::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
     std::cout<<"button pressed"<<std::endl;
@@ -168,14 +158,49 @@ void model::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     if(currentAction == Action_CreateLineStart)
     {
         QTransform trans;
-        if(itemAt(mouseEvent->scenePos(), trans))
+        Shape *it = qgraphicsitem_cast<Shape *>(itemAt(mouseEvent->scenePos(), trans));
+        lineBeginItem = it;
+        if(it != NULL)
         {
-            std::cout<<"coords of item under cursor is: " << std::endl;
+            std::cout<<"coords of item1 under cursor is: (" << it->scenePos().x() << ", " << it->scenePos().y() << ")" << std::endl;
+            it->test();
+            currentAction = Action_CreateLineEnd;
         }
         else
         {
             std::cout<<"no item here"<<std::endl;
         }
+    }
+    else if(currentAction == Action_CreateLineEnd)
+    {
+        QTransform trans;
+        Shape *it = qgraphicsitem_cast<Shape *>(itemAt(mouseEvent->scenePos(), trans));
+        lineEndItem = it;
+        if(it != NULL)
+        {
+            std::cout<<"coords of item2 under cursor is: (" << it->scenePos().x() << ", " << it->scenePos().y() << ")" << std::endl;
+            it->test();
+            currentAction = Action_CreateLineEnd;
+        }
+        else
+        {
+            std::cout<<"no item here"<<std::endl;
+        }
+        if(lineBeginItem != NULL && lineEndItem != NULL)
+        {
+            std::cout<<"Create arrow"<<std::endl;
+            Arrow *arrow = new Arrow(lineBeginItem, lineEndItem);
+            lineBeginItem->addArrow(arrow);
+            lineEndItem->addArrow(arrow);
+            arrow->setZValue(-1000.0);
+            addItem(arrow);
+            arrow->updatePosition();
+        }
+        else
+        {
+            std::cout<<"cannot create arrow without 2 shapes"<<std::endl;
+        }
+        currentAction = Action_MoveObject;
     }
     std::cout <<"Action " << currentAction<<std::endl;
     QGraphicsScene::mousePressEvent(mouseEvent);
