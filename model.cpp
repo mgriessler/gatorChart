@@ -91,6 +91,36 @@ void model::createOpenShape(qreal x, qreal y, QString shapeName)
     addItem(item);
 }
 
+void model::createOpenShape(qreal x, qreal y, QString shapeName, QString text)
+{
+    QGraphicsItem *item;
+    QColor color(QColor(Qt::red));
+    std::cout<<shapeName.toStdString()<<std::endl;
+    if((shapeName.compare(QString("Square")))==0)
+    {
+         item = new Square(color, 700, 700, text);
+    }
+    else if((shapeName.compare(QString("Oval")))==0)
+    {
+         item = new Oval(color, 700, 700, text);
+    }
+    else if((shapeName.compare(QString("Diamond")))==0)
+    {
+         item = new Diamond(color, 700, 700, text);
+    }
+    else if((shapeName.compare(QString("Parallelogram")))==0)
+    {
+         item = new Parallel(color, 700, 700, text);
+    }
+
+    else
+    {
+         item = new Trap(color, 700, 700, text);
+    }
+    item->setPos(QPointF(x, y));
+    addItem(item);
+}
+
 void model::openNewApplication()
 {
     QFileDialog dialog;
@@ -110,10 +140,11 @@ void model::openNewApplication()
         QString x = itemsInLine[2];
         QString y = itemsInLine[4];
         QString shape = itemsInLine[0];
-
+        QString text = itemsInLine[6];
+        std::cout<<text.toStdString()<<std::endl;
         qreal realx = x.toInt();
         qreal realy = y.toInt();
-        createOpenShape(realx,realy,shape);
+        createOpenShape(realx,realy,shape, text);
     }
 }
 
@@ -147,7 +178,7 @@ void model::theSaveList()
 
         out<<"( "<<listActiveItems[i]->pos().x()<<" , "<<listActiveItems[i]->pos().y()<<" ) ";
         it = qgraphicsitem_cast<Shape*>(listActiveItems[i]);
-        out << "\"" << it->getDispText() << "\"";
+        out << it->getDispText();
         out<<"\n";
     }
     file.close();

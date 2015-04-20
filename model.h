@@ -30,6 +30,7 @@ public:
     void setColor(int c);
 
     void createOpenShape(qreal x, qreal y, QString shapeName);
+    void createOpenShape(qreal x, qreal y, QString shapeName, QString text);
 
 
 public Q_SLOTS:

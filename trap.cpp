@@ -14,6 +14,17 @@ Trap ::Trap (const QColor &color, int x, int y)
     setFlags(ItemIsSelectable | ItemIsMovable);
     setAcceptHoverEvents(true);
 }
+Trap ::Trap (const QColor &color, int x, int y, QString text)
+{
+    this->x = x;
+    this->y = y;
+    this->color = color;
+    this->dispText = "Trap";
+    setZValue((x + y) % 2);
+
+    setFlags(ItemIsSelectable | ItemIsMovable);
+    setAcceptHoverEvents(true);
+}
 int Trap::type() const
 {
     return 3;

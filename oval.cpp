@@ -14,6 +14,17 @@ Oval::Oval(const QColor &color, int x,int y)
     setAcceptHoverEvents(true);
 }
 
+Oval::Oval(const QColor &color, int x,int y, QString text)
+{
+    this->x = x;
+    this->y = y;
+    this->color = color;
+    this->dispText = text;
+    setZValue((x + y) % 2);
+    setFlags(ItemIsSelectable | ItemIsMovable);
+    setAcceptHoverEvents(true);
+}
+
 QRectF Oval::boundingRect() const
 {
 

@@ -16,6 +16,7 @@ class Diamond : public Shape
 {
 public:
     Diamond(const QColor &color, int x, int y);
+    Diamond(const QColor &color, int x, int y, QString text);
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;

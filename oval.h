@@ -10,6 +10,7 @@ class Oval : public Shape
 {
 public:
     Oval(const QColor &color, int x, int y);
+    Oval(const QColor &color, int x, int y, QString text);
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;

@@ -26,6 +26,7 @@ class Square : public Shape //, public QObject
 public:
 
     Square(const QColor &color, int x, int y);
+    Square(const QColor &color, int x, int y, QString text);
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;

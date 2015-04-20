@@ -13,6 +13,18 @@ Parallel::Parallel(const QColor &color, int x, int y)
     setAcceptHoverEvents(true);
 }
 
+Parallel::Parallel(const QColor &color, int x, int y, QString text)
+{
+    this->x = x;
+    this->y = y;
+    this->color = color;
+    dispText = text;
+    setZValue((x + y) % 2);
+
+    setFlags(ItemIsSelectable | ItemIsMovable);
+    setAcceptHoverEvents(true);
+}
+
 QRectF Parallel::boundingRect() const
 {
     return QRectF(0, 0, 110, 70);
@@ -52,7 +64,7 @@ void Parallel::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     //added by me (Dennis
 
     QBrush fillbrush;
-    fillbrush.setColor(Qt::blue);
+    fillbrush.setColor(fillColor);
     fillbrush.setStyle(Qt::SolidPattern);
 
 

@@ -15,6 +15,19 @@ Diamond::Diamond(const QColor &color, int x, int y)
     setAcceptHoverEvents(true);
 
 }
+Diamond::Diamond(const QColor &color, int x, int y, QString text)
+{
+
+    this -> x = x;
+    this -> y = y;
+    this -> color = color;
+    this->dispText = text;
+    setZValue((x + y) % 2);
+
+    setFlags(ItemIsSelectable | ItemIsMovable);
+    setAcceptHoverEvents(true);
+
+}
 int Diamond::type() const
 {
     return 2;
