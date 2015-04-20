@@ -190,15 +190,6 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
     // Label layout
     //QHBoxLayout *labelLayout = new QHBoxLayout;
-    QToolButton *selectModeButton = new QToolButton;
-    selectModeButton->setText(tr("Select"));
-    selectModeButton->setCheckable(true);
-    selectModeButton->setChecked(true);
-    QToolButton *dragModeButton = new QToolButton;
-    dragModeButton->setText(tr("Drag"));
-    dragModeButton->setCheckable(true);
-    dragModeButton->setChecked(false);
-
     //TopLayout is the final layout
     QGridLayout *topLayout = new QGridLayout;
     topLayout->addWidget(graphicsView, 1, 1);
@@ -286,14 +277,44 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
             this, SLOT(setResetButtonEnabled()));
     connect(graphicsView->horizontalScrollBar(), SIGNAL(valueChanged(int)),
             this, SLOT(setResetButtonEnabled()));
-    connect(selectModeButton, SIGNAL(toggled(bool)), this, SLOT(togglePointerMode()));
-    connect(dragModeButton, SIGNAL(toggled(bool)), this, SLOT(togglePointerMode()));
+    connect(selectModeButton, SIGNAL(clicked(bool)), this, SLOT(selectMode()));
+    connect(dragModeButton, SIGNAL(clicked(bool)), this, SLOT(dragMode()));
+    connect(addConnectorButton, SIGNAL(clicked(bool)), this, SLOT(addConnector()));
     connect(zoomInButton, SIGNAL(clicked()), this, SLOT(zoomIn()));
     connect(zoomOutButton, SIGNAL(clicked()), this, SLOT(zoomOut()));
 
     setupMatrix();
 }
 
+/*
+void GraphicsView::mousePressEvent(QMouseEvent *event)
+{
+    std::cout<<"View Press "<< event->button() << std::endl;
+    if (event->button() == Qt::LeftButton) {
+        setDragMode(QGraphicsView::RubberBandDrag);
+        setInteractive(true);
+    }
+    else if (event->button() == Qt::RightButton) {
+        setDragMode(QGraphicsView::ScrollHandDrag);
+        setInteractive(false);
+    }
+    QGraphicsView::mousePressEvent(event);
+}
+
+
+void GraphicsView::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        setDragMode(QGraphicsView::RubberBandDrag);
+        setInteractive(true);
+    }
+    else if (event->button() == Qt::RightButton) {
+        setDragMode(QGraphicsView::ScrollHandDrag);
+        setInteractive(false);
+    }
+    QGraphicsView::mouseReleaseEvent(event);
+}
+*/
 void View::itemSel(QListWidgetItem *item)
 {
     Model->create(item);
@@ -321,8 +342,7 @@ void View::openFile()
 {
     QWidget *w = new QWidget;
     w->setWindowTitle("Tutorial");
-    QFile file("C:\\Users\\Dennis\\Desktop\\COP3503\\text.txt");
-    //QFile file("GitHub\\text.txt");
+    QFile file("text.txt");
     file.open(QIODevice::ReadOnly);
     QTextStream in(&file);
     QString line = in.readAll();
@@ -379,26 +399,28 @@ void View::setupMatrix()
     setResetButtonEnabled();
 }
 
-void View::setRubberBandDragAndInteractive()
+void View::selectMode()
 {
     std::cout<<"Select button"<<std::endl;
+    Model->setAction(model::Action_MoveObject);
     graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
     graphicsView->setInteractive(selectModeButton->isChecked());
 }
 
-void View::setScrollHandDrag()
+void View::addConnector()
 {
-    std::cout<<"Drag button"<<std::endl;
-    graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
-    graphicsView->setInteractive(selectModeButton->isChecked());
+    std::cout<<"Connector Button"<<std::endl;
+    Model->setAction(model::Action_CreateLineStart);
+    graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
+    graphicsView->setInteractive(true);
 }
 
-void View::togglePointerMode()
+void View::dragMode()
 {
-    graphicsView->setDragMode(selectModeButton->isChecked()
-                              ? QGraphicsView::RubberBandDrag
-                              : QGraphicsView::ScrollHandDrag);
-    graphicsView->setInteractive(selectModeButton->isChecked());
+    std::cout<<"Drag button"<<std::endl;
+    Model->setAction(model::Action_Drag);
+    graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
+    graphicsView->setInteractive(true);
 }
 
 void View::zoomIn(int level)

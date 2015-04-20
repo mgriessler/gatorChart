@@ -8,6 +8,7 @@
 #include "square.h"
 #include "mainwindow.h"
 #include <QListWidget>
+#include <QMouseEvent>
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -27,6 +28,9 @@ public:
 protected:
 #ifndef QT_NO_WHEELEVENT
     void wheelEvent(QWheelEvent *) Q_DECL_OVERRIDE;
+    //void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+    //void mouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+
 #endif
 
 private:
@@ -54,9 +58,8 @@ private Q_SLOTS:
     void resetView();
     void setResetButtonEnabled();
     void setupMatrix();
-    void togglePointerMode();
-    void setScrollHandDrag();
-    void setRubberBandDragAndInteractive();
+    void dragMode();
+    void selectMode();
     void rotateLeft();
     void rotateRight();
 
@@ -65,6 +68,7 @@ private Q_SLOTS:
     void addLabel();
     void openFile();
     void newChart(QGridLayout *topLayout);
+    void addConnector();
 
 private:
     GraphicsView *graphicsView;
