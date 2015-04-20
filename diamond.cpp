@@ -77,6 +77,13 @@ void Diamond::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
 void Diamond::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
+    if (event->button() == Qt::RightButton) {
+        //std::cout << "you right-clicked on Diamond" << std::endl;
+
+        //popUpCombo();
+        setColor(4);
+        return;
+    }
      QGraphicsItem::mousePressEvent(event);
      update();
 }
@@ -84,6 +91,7 @@ void Diamond::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void Diamond::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
+
      if (event->modifiers() & Qt::ShiftModifier) {
          stuff << event->pos();
          update();

@@ -280,7 +280,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
     //connect stuff
     //connect(color, SIGNAL(clicked()), this, SLOT(editColor()));
-    connect(text, SIGNAL(clicked()), this, SLOT(addLabel()));
+    connect(text, SIGNAL(clicked()), this, SLOT(edit()));
 
 
     connect(shapesList, SIGNAL(itemPressed(QListWidgetItem*)), this, SLOT(itemSel(QListWidgetItem*)));
@@ -361,9 +361,8 @@ void View::myClose()
 
 void View::edit()
 {
-
+    std::cout<<"View Edit"<<std::endl;
     Model->setColor(combo->currentIndex());
-
 }
 
 void View::openFile()

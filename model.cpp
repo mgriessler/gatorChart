@@ -140,8 +140,9 @@ void model::label()
 
 void model::setColor(int c)
 {
+    std::cout<<"model set color"<<std::endl;
     QList<QGraphicsItem *> list = selectedItems();
-    Square *it = qgraphicsitem_cast<Square *>(list[0]);
+    Shape *it = qgraphicsitem_cast<Shape *>(list[0]);
     it->setColor(c);
 }
 

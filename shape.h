@@ -10,10 +10,14 @@ class Shape : public QGraphicsItem
 {
 public:
     Shape();
+    QColor color;
     void test();
     void test2();
     void addArrow(Arrow *arrow);
     void setDispText(QString text);
+    void editColor(Shape *x, QColor);
+    //void popUpCombo();
+    void setColor(int n);
 
 private:
     QList<Arrow *> arrows;

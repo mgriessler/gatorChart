@@ -20,23 +20,20 @@ QT_END_NAMESPACE
 
 
 
-class Square : public Shape, public QObject
+class Square : public Shape //, public QObject
 {
     //Q_OBJECT
 public:
-    QWidget *w;
-    QHBoxLayout *t;
-    QComboBox *combo1;
-    QToolButton *b;
+
     Square(const QColor &color, int x, int y);
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget) Q_DECL_OVERRIDE;
 
-    void editColor(Square *x, QColor);
+    //void editColor(Square *x, QColor);
     //void popUpCombo();
-    void setColor(int n);
+    //void setColor(int n);
 
     int type() const Q_DECL_OVERRIDE;
 
@@ -50,7 +47,7 @@ private:
     int x;
     int y;
     int colorIndex;
-    QColor color;
+
     //QWidget *w;
     //QHBoxLayout *t;
     //QComboBox *combo1;

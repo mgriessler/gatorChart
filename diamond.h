@@ -5,6 +5,13 @@
 #include <QGraphicsItem>
 #include "shape.h"
 
+QT_BEGIN_NAMESPACE
+class QLabel;
+class QSlider;
+class QToolButton;
+class QListWidget;
+QT_END_NAMESPACE
+
 class Diamond : public Shape
 {
 public:
