@@ -81,6 +81,12 @@ void Square::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
     painter->drawLine(94, 53, 94, 15);
     painter->setPen(QPen(Qt::black, 0));
 
+    QFont font("Times", 10);
+    font.setStyleStrategy(QFont::ForceOutline);
+    painter->setFont(font);
+    painter->save();
+    painter->drawText(20,40, dispText);
+    painter->restore();
 }
 
 

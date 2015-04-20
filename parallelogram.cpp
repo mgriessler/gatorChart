@@ -6,6 +6,7 @@ Parallel::Parallel(const QColor &color, int x, int y)
     this->x = x;
     this->y = y;
     this->color = color;
+    dispText = "Parallel";
     setZValue((x + y) % 2);
 
     setFlags(ItemIsSelectable | ItemIsMovable);
@@ -67,6 +68,13 @@ void Parallel::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     QPainterPath p;
     p.addRegion(poly);
     painter->fillPath(p,fillbrush);
+
+    QFont font("Times", 10);
+    font.setStyleStrategy(QFont::ForceOutline);
+    painter->setFont(font);
+    painter->save();
+    painter->drawText(20,20, dispText);
+    painter->restore();
 }
 
 void Parallel::mousePressEvent(QGraphicsSceneMouseEvent *event)

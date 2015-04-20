@@ -58,6 +58,10 @@ flow chart. Gator Charts also allows you to personalize and/or
 organize your flow charts by changing the following properties 
 of your shapes: inside text, location on screen, and color.
 
+If you need to make adjustments such as deleting shapes, no problem!
+Just right click and hit delete. Just make sure that it is not 
+attached to any arrows.
+
 The tool bar for basic alterations of your shapes is located 
 at the top of the screne. To change to shape properties, click 
 on the shape and choose for the pop-up menu.
