@@ -1,4 +1,5 @@
 #include "diamond.h"
+
 #include <QtWidgets>
 
 Diamond::Diamond(const QColor &color, int x, int y)
@@ -7,7 +8,6 @@ Diamond::Diamond(const QColor &color, int x, int y)
     this -> x = x;
     this -> y = y;
     this -> color = color;
-    this->dispText = "Trap";
     setZValue((x + y) % 2);
 
     setFlags(ItemIsSelectable | ItemIsMovable);
@@ -29,8 +29,8 @@ QRectF Diamond ::boundingRect() const
 QPainterPath Diamond::shape() const
 {
      QPainterPath path;
-     //path.addRect(14, 14, 82, 42);
-     path.addRect(0, 0, 110, 110);
+     path.addRect(14, 14, 82, 42);
+     path.addRect(0, 0, 130, 80);
      return path;
 }
 
@@ -39,7 +39,7 @@ void Diamond::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 {
      Q_UNUSED(widget);
 
-    QColor fillColor = color;
+     QColor fillColor = color;
 
 
      QPen oldPen = painter->pen();
@@ -57,7 +57,7 @@ void Diamond::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
      painter->setPen(QPen(Qt::black, 1));
 
      QBrush fillbrush;
-     fillbrush.setColor(Qt::blue);
+     fillbrush.setColor(fillColor);
      fillbrush.setStyle(Qt::SolidPattern);
 
     QPolygon poly;
@@ -71,13 +71,6 @@ void Diamond::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     QPainterPath p;
     p.addRegion(poly);
     painter->fillPath(p,fillbrush);
-
-    QFont font("Times", 10);
-    font.setStyleStrategy(QFont::ForceOutline);
-    painter->setFont(font);
-    painter->save();
-    painter->drawText(20,20, dispText);
-    painter->restore();
 }
 
 void Diamond::mousePressEvent(QGraphicsSceneMouseEvent *event)

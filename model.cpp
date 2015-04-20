@@ -10,7 +10,6 @@
 #include <QFile>
 #include <QString>
 #include <QStringList>
-#include <QFileDialog>
 
 /*********************************************************
  * the purpose of the model is to maintain all components that make up the flowchart
@@ -21,7 +20,7 @@
  * then the model tells the view to update
  * and the cycle continues
  * to reiterate: to add a shape to the view, it is not directly added to the view, but it is added to the model and the model changes the view
- * Functions provided by the model (CMD or Commands)
+ * Functions provided by the model (CMD or Commands) - yes I came up with that myself, yes, I'm proud of it
  * Create - add items to the view
  * Manipulate - change items in the view
  * Delete - remove items from the view
@@ -50,10 +49,6 @@ void model::create(QListWidgetItem *thing)
     {
          item = new Diamond(color, x, y);
     }
-    else if(thing->text() == "parallelogram")
-    {
-        item = new Parallel(color, x, y);
-    }
     else
     {
          item = new Trap(color, x, y);
@@ -78,24 +73,17 @@ void model::createOpenShape(qreal x, qreal y, QString shapeName)
     {
          item = new Diamond(color, 700, 700);
     }
-    else if((shapeName.compare(QString("Trapezoid")))==0)
+    else
     {
          item = new Trap(color, 700, 700);
     }
-    else
-        item = new Parallel(color, 700, 700);
     item->setPos(QPointF(x, y));
     addItem(item);
 }
 
 void model::openNewApplication()
 {
-    QFileDialog dialog;
-    dialog.setFileMode(QFileDialog::ExistingFile);
-    QStringList fileNamer;
-    if (dialog.exec())
-        fileNamer = dialog.selectedFiles();
-   QFile file(fileNamer[0]);
+    QFile file("flowchart.txt");
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
     QTextStream in(&file);
@@ -116,14 +104,9 @@ void model::openNewApplication()
 
 void model::theSaveList()
 {
-    QFileDialog dialog;
-    dialog.setFileMode(QFileDialog::AnyFile);
-    QStringList fileNames;
-    if (dialog.exec())
-        fileNames = dialog.selectedFiles();
-
+    std::cout<<"You have reached theSaveList() level";
     listActiveItems = items();
-    QFile file(fileNames[0]);
+    QFile file("flowchart.txt");
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
     QTextStream out(&file);
@@ -135,10 +118,8 @@ void model::theSaveList()
             out<<"Oval ";
         else if(listActiveItems[i]->type() == 2)
             out<<"Diamond ";
-        else if(listActiveItems[i]->type() == 3)
-            out<<"Trapezoid ";
         else
-            out<<"Parallelogram ";
+            out<<"Trapezoid ";
 
         out<<"( "<<listActiveItems[i]->pos().x()<<" , "<<listActiveItems[i]->pos().y()<<" ) ";
         out<<"\n";
@@ -161,6 +142,11 @@ void model::setColor(int c)
 {
     std::cout<<"model set color"<<std::endl;
     QList<QGraphicsItem *> list = selectedItems();
+    if(list.length()==0)
+    {
+        return;
+    }
+
     Shape *it = qgraphicsitem_cast<Shape *>(list[0]);
     it->setColor(c);
 }
@@ -227,15 +213,6 @@ void model::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
             std::cout<<"cannot create arrow without 2 shapes"<<std::endl;
         }
         currentAction = Action_MoveObject;
-    }
-    else if(currentAction == Action_Delete)
-    {
-        foreach(QGraphicsItem *item, selectedItems())
-        {
-            //qgraphicsitem_cast<Shape *>(item)->removeArrows();
-            removeItem(item);
-            delete item;
-        }
     }
     std::cout <<"Action " << currentAction<<std::endl;
     QGraphicsScene::mousePressEvent(mouseEvent);

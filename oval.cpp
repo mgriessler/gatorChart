@@ -44,7 +44,7 @@ void Oval::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 
     pen.setWidth(width);
     QBrush b = painter->brush();
-    painter->setBrush(QBrush(fillColor.dark(option->state & QStyle::State_Sunken ? 120 : 100)));
+    painter->setBrush(fillColor);
 
     painter->setPen(QPen(Qt::black, 0));
 

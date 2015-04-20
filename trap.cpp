@@ -21,15 +21,14 @@ int Trap::type() const
 QRectF Trap ::boundingRect() const
 {
     //window location
-    return QRectF(0, 0, 110, 70);
+    return QRectF(0, 0, 110, 110);
     //return QRectF(0, 0, 110, 70);
 }
 
 QPainterPath Trap ::shape() const
 {
     QPainterPath path;
-    path.addRect(14, 14, 82, 42);
-    path.addRect(0, 0, 130, 80);
+    path.addRect(0, 0, 110, 110);
     return path;
 }
 
@@ -59,7 +58,7 @@ void Trap ::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     //added by me (Dennis
 
     QBrush fillbrush;
-    fillbrush.setColor(Qt::blue);
+    fillbrush.setColor(fillColor);
     fillbrush.setStyle(Qt::SolidPattern);
 
 
@@ -77,11 +76,13 @@ void Trap ::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     painter->fillPath(p,fillbrush);
 
 
+
     QFont font("Times", 10);
     font.setStyleStrategy(QFont::ForceOutline);
     painter->setFont(font);
     painter->save();
-    painter->drawText(20,20, dispText);
+    painter->scale(1, 1);
+    painter->drawText(10, 10, dispText);
     painter->restore();
 
 }
