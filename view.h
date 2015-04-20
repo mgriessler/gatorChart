@@ -82,7 +82,6 @@ private:
     QMenu *menu2;
     QMenu *menu3;
     QMenu *menu4;
-    //QFile *file;
     QAction *exitAction;
     QAction *newAction;
     QAction *printAction;

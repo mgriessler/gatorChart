@@ -1,4 +1,5 @@
 #include "oval.h"
+
 #include <QTWidgets>
 #include <iostream>
 
@@ -78,4 +79,3 @@ void Oval::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseReleaseEvent(event);
 }
-

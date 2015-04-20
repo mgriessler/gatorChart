@@ -1,5 +1,4 @@
 #include "diamond.h"
-
 #include <QtWidgets>
 
 Diamond::Diamond(const QColor &color, int x, int y)
@@ -30,8 +29,8 @@ QRectF Diamond ::boundingRect() const
 QPainterPath Diamond::shape() const
 {
      QPainterPath path;
-     path.addRect(14, 14, 82, 42);
-     path.addRect(0, 0, 130, 80);
+     //path.addRect(14, 14, 82, 42);
+     path.addRect(0, 0, 110, 110);
      return path;
 }
 
