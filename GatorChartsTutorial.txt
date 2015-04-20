@@ -67,6 +67,7 @@ shapes, no problem! Just right click and hit delete.
 List of known bugs:
 -cannot save arrows, the save feature only saves shapes
 -cannot delete shapes that have arrows
+-cannot save color, the save feature only saves shapes
 
 The tool bar for basic alterations of your shapes is located 
 at the top of the screne. To change to shape properties, click 
