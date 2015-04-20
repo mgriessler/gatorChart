@@ -246,6 +246,11 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     connect(newAction, SIGNAL(triggered()), this, SLOT(resetView()));
     menu->addAction(newAction);
 
+    openAction = new QAction(tr("Open"),this);
+    connect(openAction, SIGNAL(triggered()), this, SLOT(open()));
+    menu->addAction(openAction);
+
+
     //Print Menu Actions
     menu2 = menu_bar->addMenu("Print");
     printAction = new QAction(tr("Print"), this);
@@ -257,6 +262,12 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     helpAction = new QAction(tr("Tutorial"), this);
     connect(helpAction, SIGNAL(triggered()), this, SLOT(openFile()));
     menu3->addAction(helpAction);
+
+    //Save Menu Actions
+    menu4 = menu_bar->addMenu("Save");
+    saveAction = new QAction(tr("Save"),this);
+    connect(saveAction, SIGNAL(triggered()),this,SLOT(save()));
+    menu4->addAction(saveAction);
 
     topLayout->addWidget(menu_bar, 0, 0, 1, 1);
 
@@ -326,6 +337,13 @@ void View::itemSel(QListWidgetItem *item)
 void View::save()
 {
     Model->theSaveList();
+    std::cout<<"You are saving"<<std::endl;
+    return;
+}
+void View::open()
+{
+    std::cout<<"You are opening a new file"<<std::endl;
+    Model->openNewApplication();
     return;
 }
 

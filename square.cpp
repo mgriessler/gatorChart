@@ -50,7 +50,10 @@ QRectF Square::boundingRect() const
 {
     return QRectF(0, 0, 110, 70);
 }
-
+int Square::type() const
+{
+    return 0;
+}
 QPainterPath Square::shape() const
 {
     QPainterPath path;

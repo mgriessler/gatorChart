@@ -14,7 +14,10 @@ Diamond::Diamond(const QColor &color, int x, int y)
     setAcceptHoverEvents(true);
 
 }
-
+int Diamond::type() const
+{
+    return 2;
+}
 QRectF Diamond ::boundingRect() const
 {
     //window location

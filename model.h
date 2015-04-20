@@ -6,6 +6,8 @@
 #include <QGraphicsItem>
 #include <QtWidgets>
 #include <QList>
+#include "shape.h"
+#include "arrow.h"
 
 class model : public QGraphicsScene
 {
@@ -21,9 +23,14 @@ public:
     void createRect(QColor color, qreal x, qreal y);
     void updateScene();
     void theSaveList();
-    void itemHere(QMouseEvent *event);
+    void openNewApplication();
+
     void setAction(DesiredAction action);
+
     void setColor(int c);
+
+    void createOpenShape(qreal x, qreal y, QString shapeName);
+
 
 public Q_SLOTS:
     void shapeSelection();
@@ -32,8 +39,9 @@ protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
 
 private:
-    QGraphicsItem *items[10];
     DesiredAction currentAction;
+    Shape *lineBeginItem;
+    Shape *lineEndItem;
 };
 
 #endif // MODEL_H

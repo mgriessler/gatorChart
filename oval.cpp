@@ -8,7 +8,6 @@ Oval::Oval(const QColor &color, int x,int y)
     this->y = y;
     this->color = color;
     setZValue((x + y) % 2);
-
     setFlags(ItemIsSelectable | ItemIsMovable);
     setAcceptHoverEvents(true);
 }
@@ -19,7 +18,10 @@ QRectF Oval::boundingRect() const
     return QRectF(0,0,90,40);
 
 }
-
+int Oval::type() const
+{
+    return 1;
+}
 QPainterPath Oval::shape() const
 {
     QPainterPath path;
@@ -31,10 +33,11 @@ void Oval::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 {
     Q_UNUSED(widget);
 
-    QColor fillColor = (option->state & QStyle::State_Selected) ? color.dark(150) : color;
+    /*QColor fillColor = (option->state & QStyle::State_Selected) ? color.dark(150) : color;
     if (option->state & QStyle::State_MouseOver)
         fillColor = fillColor.light(125);
-
+*/
+    QColor fillColor = color;
     QPen oldPen = painter->pen();
     QPen pen = oldPen;
     int width = 0;
@@ -49,6 +52,13 @@ void Oval::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 
 
     painter->drawEllipse(0,0,90,40);
+
+    QFont font("Times", 10);
+    font.setStyleStrategy(QFont::ForceOutline);
+    painter->setFont(font);
+    //painter->save();
+    painter->drawText(20,20, QString("TEST TEXT"));
+    //painter->restore();
 
 }
 void Oval::mousePressEvent(QGraphicsSceneMouseEvent *event)

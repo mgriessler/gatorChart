@@ -8,7 +8,8 @@
 #include <QList>
 #include <QGraphicsItem>
 #include <QFile>
-
+#include <QString>
+#include <QStringList>
 
 /*********************************************************
  * the purpose of the model is to maintain all components that make up the flowchart
@@ -35,7 +36,7 @@ void model::create(QListWidgetItem *thing)
     QColor color(QColor(Qt::red));
     qreal x = 700;
     qreal y = 700;
-   QGraphicsItem *item;
+    QGraphicsItem *item;
     if(thing->text() == "square")
     {
          item = new Square(color, x, y);
@@ -55,28 +56,75 @@ void model::create(QListWidgetItem *thing)
     item->setPos(QPointF(100, 100));
     addItem(item);
 }
+void model::createOpenShape(qreal x, qreal y, QString shapeName)
+{
+    QGraphicsItem *item;
+    QColor color(QColor(Qt::red));
+    std::cout<<shapeName.toStdString()<<std::endl;
+    if((shapeName.compare(QString("Square")))==0)
+    {
+         item = new Square(color, 700, 700);
+    }
+    else if((shapeName.compare(QString("Oval")))==0)
+    {
+         item = new Oval(color, 700, 700);
+    }
+    else if((shapeName.compare(QString("Diamond")))==0)
+    {
+         item = new Diamond(color, 700, 700);
+    }
+    else
+    {
+         item = new Trap(color, 700, 700);
+    }
+    item->setPos(QPointF(x, y));
+    addItem(item);
+}
+
+void model::openNewApplication()
+{
+    QFile file("flowchart.txt");
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+    QTextStream in(&file);
+    while(!in.atEnd())
+    {
+        QString line = in.readLine();
+        std::cout<<line.toStdString()<<std::endl;
+        QStringList itemsInLine = line.split(" ");
+        QString x = itemsInLine[2];
+        QString y = itemsInLine[4];
+        QString shape = itemsInLine[0];
+
+        qreal realx = x.toInt();
+        qreal realy = y.toInt();
+        createOpenShape(realx,realy,shape);
+    }
+}
+
 void model::theSaveList()
 {
-    //listActiveItems = items();
-    for(int i=0; i<listActiveItems.size(); i++)
-    {
-        std::cout<<listActiveItems[i]->type()<<std::endl;
-        //std::cout<<"    "<<std::endl;
-    }
-
-
-
-
-    /*QFile file("flowchart.txt");
+    std::cout<<"You have reached theSaveList() level";
+    listActiveItems = items();
+    QFile file("flowchart.txt");
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
     QTextStream out(&file);
-        out<<"Hello World I'm a flow chart software.";
-    file.close();
     for(int i=0; i<listActiveItems.size(); i++)
     {
-        out<<"Shape: "<<
-    }*/
+        if(listActiveItems[i]->type() == 0)
+            out<<"Square ";
+        else if(listActiveItems[i]->type() == 1)
+            out<<"Oval ";
+        else if(listActiveItems[i]->type() == 2)
+            out<<"Diamond ";
+        else
+            out<<"Trapezoid ";
+
+        out<<"( "<<listActiveItems[i]->pos().x()<<" , "<<listActiveItems[i]->pos().y()<<" ) ";
+        out<<"\n";
+    }
+    file.close();
 }
 
 void model::label()
@@ -106,16 +154,6 @@ void model::createRect(QColor color, qreal x, qreal y)
     addItem(item);
 }
 
-void model::itemHere(QMouseEvent *event)
-{
-    QTransform trans;
-    if (QGraphicsItem *item = itemAt(QPointF(100,100), trans)) {
-            std::cout << "You clicked on item" << item << std::endl;
-    } else {
-            std::cout << "You didn't click on an item." << std::endl;
-    }
-}
-
 void model::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
     std::cout<<"button pressed"<<std::endl;
@@ -128,14 +166,49 @@ void model::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     if(currentAction == Action_CreateLineStart)
     {
         QTransform trans;
-        if(itemAt(mouseEvent->scenePos(), trans))
+        Shape *it = qgraphicsitem_cast<Shape *>(itemAt(mouseEvent->scenePos(), trans));
+        lineBeginItem = it;
+        if(it != NULL)
         {
-            std::cout<<"coords of item under cursor is: " << std::endl;
+            std::cout<<"coords of item1 under cursor is: (" << it->scenePos().x() << ", " << it->scenePos().y() << ")" << std::endl;
+            it->test();
+            currentAction = Action_CreateLineEnd;
         }
         else
         {
             std::cout<<"no item here"<<std::endl;
         }
+    }
+    else if(currentAction == Action_CreateLineEnd)
+    {
+        QTransform trans;
+        Shape *it = qgraphicsitem_cast<Shape *>(itemAt(mouseEvent->scenePos(), trans));
+        lineEndItem = it;
+        if(it != NULL)
+        {
+            std::cout<<"coords of item2 under cursor is: (" << it->scenePos().x() << ", " << it->scenePos().y() << ")" << std::endl;
+            it->test();
+            currentAction = Action_CreateLineEnd;
+        }
+        else
+        {
+            std::cout<<"no item here"<<std::endl;
+        }
+        if(lineBeginItem != NULL && lineEndItem != NULL)
+        {
+            std::cout<<"Create arrow"<<std::endl;
+            Arrow *arrow = new Arrow(lineBeginItem, lineEndItem);
+            lineBeginItem->addArrow(arrow);
+            lineEndItem->addArrow(arrow);
+            arrow->setZValue(-1000.0);
+            addItem(arrow);
+            arrow->updatePosition();
+        }
+        else
+        {
+            std::cout<<"cannot create arrow without 2 shapes"<<std::endl;
+        }
+        currentAction = Action_MoveObject;
     }
     std::cout <<"Action " << currentAction<<std::endl;
     QGraphicsScene::mousePressEvent(mouseEvent);

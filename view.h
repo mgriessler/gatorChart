@@ -56,6 +56,7 @@ public Q_SLOTS:
     void itemSel(QListWidgetItem *item);
     void save();
     void zoomOut(int level = 1);
+    void open();
 
 private Q_SLOTS:
     void print();
@@ -73,17 +74,21 @@ private Q_SLOTS:
     void openFile();
     void addConnector();
 
+
 private:
     GraphicsView *graphicsView;
     QMenuBar *menu_bar;
     QMenu *menu;
     QMenu *menu2;
     QMenu *menu3;
+    QMenu *menu4;
     //QFile *file;
     QAction *exitAction;
     QAction *newAction;
     QAction *printAction;
     QAction *helpAction;
+    QAction *saveAction;
+    QAction *openAction;
     QLabel *label;
     QLabel *label2;
     QLabel *colorLabel;

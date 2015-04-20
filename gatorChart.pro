@@ -23,21 +23,21 @@ SOURCES += main.cpp\
     square.cpp \
     model.cpp \
     arrow.cpp \
-    diagramitem.cpp \
     trap.cpp \
     diamond.cpp \
     parallelogram.cpp \
-    oval.cpp
+    oval.cpp \
+    shape.cpp
 
 HEADERS  += mainwindow.h \
     view.h \
     square.h \
     model.h \
     arrow.h \
-    diagramitem.h \
     trap.h \
     diamond.h \
     parallelogram.h \
-    oval.h
+    oval.h \
+    shape.h
 
 DISTFILES +=
