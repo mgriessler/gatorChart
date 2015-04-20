@@ -8,6 +8,7 @@ Square::Square(const QColor &color, int x, int y)
     this->x = x;
     this->y = y;
     this->color = color;
+    this->dispText = "Square";
     setZValue((x + y) % 2);
 
     setFlags(ItemIsSelectable | ItemIsMovable);
@@ -16,31 +17,8 @@ Square::Square(const QColor &color, int x, int y)
 
 }
 
-/*
-void Square::popUpCombo()
-{
 
-    w = new QWidget;
-    w->setWindowTitle("Select Color");
-    t = new QHBoxLayout;
-    w->setLayout(t);
-    combo1 = new QComboBox;
-    combo1->addItem("blue");
-    combo1->addItem("red");
-    combo1->addItem("green");
-    combo1->addItem("gray");
-    combo1->addItem("yellow");
-    t->addWidget(combo1);
-    w->show();
 
-    b = new QToolButton;
-    b->setText("OK");
-    t->addWidget(b);
-
-    //connect(b, SIGNAL(triggered()), this, SLOT(openFile()));
-    //connect(b, SIGNAL(clicked()), this, SLOT(setColor()));
-
-}*/
 
 QRectF Square::boundingRect() const
 {
@@ -61,9 +39,7 @@ void Square::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 {
     Q_UNUSED(widget);
 
-    QColor fillColor = (option->state & QStyle::State_Selected) ? color.dark(150) : color;
-    if (option->state & QStyle::State_MouseOver)
-        fillColor = fillColor.light(125);
+    QColor fillColor = color;
 
     QPen oldPen = painter->pen();
     QPen pen = oldPen;
@@ -82,6 +58,13 @@ void Square::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
     painter->drawLine(15, 54, 94, 54);
     painter->drawLine(94, 53, 94, 15);
     painter->setPen(QPen(Qt::black, 0));
+
+    QFont font("Times", 10);
+    font.setStyleStrategy(QFont::ForceOutline);
+    painter->setFont(font);
+    painter->save();
+    painter->drawText(20,20, dispText);
+    painter->restore();
 
 }
 

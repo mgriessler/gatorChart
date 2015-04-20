@@ -1,7 +1,6 @@
 #include "arrow.h"
 
 #include <math.h>
-
 #include <QPen>
 #include <QPainter>
 #include <iostream>

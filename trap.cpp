@@ -8,6 +8,7 @@ Trap ::Trap (const QColor &color, int x, int y)
     this->x = x;
     this->y = y;
     this->color = color;
+    this->dispText = "Trap";
     setZValue((x + y) % 2);
 
     setFlags(ItemIsSelectable | ItemIsMovable);
@@ -36,9 +37,7 @@ void Trap ::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 {
     Q_UNUSED(widget);
 
-    QColor fillColor = (option->state & QStyle::State_Selected) ? color.dark(150) : color;
-    if (option->state & QStyle::State_MouseOver)
-        fillColor = fillColor.light(125);
+    QColor fillColor = color;
 
     QPen oldPen = painter->pen();
     QPen pen = oldPen;
@@ -78,16 +77,13 @@ void Trap ::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     painter->fillPath(p,fillbrush);
 
 
-    /*
-    //painter->drawLine(15, 54, 94, 54);
     QFont font("Times", 10);
     font.setStyleStrategy(QFont::ForceOutline);
     painter->setFont(font);
     painter->save();
-    painter->scale(1, 1);
-    painter->drawText(0, 0, QString("Start"));
+    painter->drawText(20,20, dispText);
     painter->restore();
-    */
+
 }
 
 void Trap ::mousePressEvent(QGraphicsSceneMouseEvent *event)

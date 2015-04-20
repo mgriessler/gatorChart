@@ -92,6 +92,10 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     dragModeButton->setText(tr("Drag"));
     dragModeButton->setCheckable(true);
     dragModeButton->setChecked(false);
+    deleteButton = new QToolButton;
+    deleteButton->setText(tr("Delete"));
+    deleteButton->setCheckable(true);
+    deleteButton->setChecked(false);
     addConnectorButton = new QToolButton;
     addConnectorButton->setText(tr("Connector"));
     addConnectorButton->setCheckable(true);
@@ -115,13 +119,12 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     pointerModeGroup->setExclusive(true);
     pointerModeGroup->addButton(selectModeButton);
     pointerModeGroup->addButton(dragModeButton);
+    pointerModeGroup->addButton(deleteButton);
     pointerModeGroup->addButton(addConnectorButton);
 
     saveButton = new QToolButton;
     saveButton->setText(tr("Save"));
     saveButton->setAutoRepeat(true);
-
-
 
     //Michelle
     shapesList = new QListWidget();
@@ -129,17 +132,20 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     QListWidgetItem *diamond = new QListWidgetItem();
     QListWidgetItem *trapezoid = new QListWidgetItem();
     QListWidgetItem *oval = new QListWidgetItem();
+    QListWidgetItem *parallelogram = new QListWidgetItem();
 
     square->setText("square");
     diamond->setText("diamond");
     trapezoid->setText("trapezoid");
     oval->setText("oval");
+    parallelogram->setText("parallelogram");
 
 
     shapesList->insertItem(2, square);
     shapesList->insertItem(3, diamond);
     shapesList->insertItem(4, trapezoid);
     shapesList->insertItem(5, oval);
+    shapesList->insertItem(6, parallelogram);
 
     QLabel *shapesListLabel = new QLabel(tr("<b>Insert Shape</b>"));
 
@@ -158,6 +164,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     toolBar->setAlignment(pointerMode, Qt::AlignRight);
     toolBar->addWidget(selectModeButton);
     toolBar->addWidget(dragModeButton);
+    toolBar->addWidget(deleteButton);
     toolBar->addWidget(addConnectorButton);
     toolBar->setAlignment(addConnectorButton, Qt::AlignLeft);
     toolBar->addWidget(zoomLabel);
@@ -293,6 +300,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
             this, SLOT(setResetButtonEnabled()));
     connect(selectModeButton, SIGNAL(clicked(bool)), this, SLOT(selectMode()));
     connect(dragModeButton, SIGNAL(clicked(bool)), this, SLOT(dragMode()));
+    connect(deleteButton, SIGNAL(clicked(bool)), this, SLOT(deleteMode()));
     connect(addConnectorButton, SIGNAL(clicked(bool)), this, SLOT(addConnector()));
     connect(zoomInButton, SIGNAL(clicked()), this, SLOT(zoomIn()));
     connect(zoomOutButton, SIGNAL(clicked()), this, SLOT(zoomOut()));
@@ -426,6 +434,14 @@ void View::selectMode()
     Model->setAction(model::Action_MoveObject);
     graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
     graphicsView->setInteractive(selectModeButton->isChecked());
+}
+
+void View::deleteMode()
+{
+    std::cout<<"Delete button"<<std::endl;
+    Model->setAction(model::Action_Delete);
+    graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
+    graphicsView->setInteractive(true);
 }
 
 void View::addConnector()

@@ -72,6 +72,7 @@ private Q_SLOTS:
     void edit();
     void openFile();
     void addConnector();
+    void deleteMode();
 
 
 private:
@@ -81,7 +82,6 @@ private:
     QMenu *menu2;
     QMenu *menu3;
     QMenu *menu4;
-    //QFile *file;
     QAction *exitAction;
     QAction *newAction;
     QAction *printAction;
@@ -97,6 +97,7 @@ private:
     QToolButton *saveButton;
     QToolButton *selectModeButton;
     QToolButton *dragModeButton;
+    QToolButton *deleteButton;
     QToolButton *antialiasButton;
     QToolButton *resetButton;
     QToolButton *addConnectorButton;
