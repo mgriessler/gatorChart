@@ -56,11 +56,11 @@ void model::create(QListWidgetItem *thing)
 }
 void model::theSaveList()
 {
-    listActiveItems = items();
+    //listActiveItems = items();
     for(int i=0; i<listActiveItems.size(); i++)
     {
         std::cout<<listActiveItems[i]->type()<<std::endl;
-        std::cout<<"    "<<endl;
+        //std::cout<<"    "<<std::endl;
     }
 
 

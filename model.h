@@ -14,7 +14,7 @@ public:
     model();
 
     QList<QGraphicsItem *> listActiveItems;
-    enum DesiredAction {Action_CreateShape, Action_CreateLineStart, Action_CreateLineEnd, Action_MoveObject};
+    enum DesiredAction {Action_CreateShape, Action_CreateLineStart, Action_CreateLineEnd, Action_MoveObject, Action_Drag};
 
     void create(QListWidgetItem *item);
     void label();
