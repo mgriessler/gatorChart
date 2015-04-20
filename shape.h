@@ -1,49 +1,21 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#include <QGraphicsPolygonItem>
-#include <QMenu>
 #include <QGraphicsItem>
-#include <QGraphicsScene>
-#include <QPolygonF>
-#include <QPixmap>
-#include <QGraphicsSceneContextMenuEvent>
-#include <QVariant>
-#include <QList>
 #include "arrow.h"
+#include <QList>
+class Arrow;
 
-class shape : public QGraphicsPolygonItem
+class Shape : public QGraphicsItem
 {
 public:
-    enum {Type = UserType + 15};
-    enum DiagramType {Step, Conditional, StartEnd, Io};
-
-    shape(DiagramType diagramType, QMenu *contextMenu, QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
-
-    /*void removeArrow(Arrow *arrow);
-    void removeArrows();*/
-    DiagramType diagramType() const{
-        return myDiagramType;
-    }
-    QPolygonF polygon() const{
-        return myPolygon;
-    }
-
-    /*void addArrow(Arrow *arrow);
-    QPixmap image() const;
-    int type() const{
-        return Type;
-    }*/
-
-protected:
-    void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
-    QVariant itemChange(GraphicsItemChange change, const QVariant &value);
+    Shape();
+    void test();
+    void test2();
+    void addArrow(Arrow *arrow);
 
 private:
-    DiagramType myDiagramType;
-    QPolygonF myPolygon;
-    QMenu *myContextMenu;
-    //QList<Arrow*> arrows;
+    QList<Arrow *> arrows;
 };
 
 #endif // SHAPE_H
