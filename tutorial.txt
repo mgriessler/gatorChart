@@ -1,0 +1,84 @@
+__________________________________________________________________
+
+                              Welcome                      
+                                 to                     
+                           --------------
+                            Gator Charts! 
+                           --------------
+
+designed by:
+Valentina R D, Matthew G, Dennis A, Michelle P, & Sarah A
+__________________________________________________________________
+
+
+Gator Charts is a program that allows users to create useful 
+flowcharts by creating shapes and lines. It is often easier to 
+understand a complicated idea graphically, flowcharts enable 
+understanding.There are myriads of uses for flow charts. Some are:
+
+   - Explaining programs, or subsections of programs 
+     such as algorithms
+   - Many manuals, such as those used in the space 
+     shuttle, have processes that are represented with
+     a flow chart 
+   - When choosing an option from a field of options, 
+     a flowchart can direct you to the correct choice 
+     by helping you asking a series of questions 
+   - Modeling real life processes, for example, a 
+     traffic light controller     
+
+Gator Charts has several advantages over the competition, 
+including Microsoft Visio and yEd. Gator Charts is simple to use 
+and single minded in purpose with its only purpose to make flowcharts.
+Gator Charts was born out of frustration with the complicated nature 
+of other flowchart software used tomake flowcharts for college classes.
+
+The purpose of Gator Charts is to create logically meaningful 
+flow charts.
+
+The two major logical components are lines and shapes. 
+Lines logically connect inputs by pointing from one object to 
+another to create direction and show how logical statements act with 
+each other.
+
+Every different shape has a unique logical meaning:
+
+   - Parallelogram: represent input data.
+   - Oval: indicates the starting and ending points of a 
+     process.
+   - Rectangle: represents a step in the process.
+   - Square: indicates a set of steps that combine to 
+     create a sub-process that is defined elsewhere, often 
+     on another page in the same drawing.
+   - Trapezoid: represents an operation or adjustment to 
+     process that can only be made manually.
+
+You can use these shapes and lines to create a meaningful 
+flow chart. Gator Charts also allows you to personalize and/or 
+organize your flow charts by changing the following properties 
+of your shapes: inside text, location on screen, and color.
+
+Gator Charts is also equipped to print your flow chart. It gets even
+better if you want to stop working on it now and come back later.
+You can save your flow chart and reload it again to keep working and 
+have everything saved. If you need to make adjustments such as deleting 
+shapes, no problem! Just right click and hit delete. 
+
+List of known bugs:
+-cannot save arrows, the save feature only saves shapes
+-cannot delete shapes that have arrows
+-cannot save color, the save feature only saves shapes
+
+The tool bar for basic alterations of your shapes is located 
+at the top of the screne. To change to shape properties, click 
+on the shape and choose for the pop-up menu.
+__________________________________________________________________
+
+                    Enjoy Gator Charts!
+                    
+                    
+Thank you for using our product and have a fabulous day!
+
+__________________________________________________________________
+
+
