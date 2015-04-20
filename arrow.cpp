@@ -13,7 +13,7 @@ Arrow::Arrow(Shape *startItem, Shape *endItem, QGraphicsItem *parent)
     startShape = startItem;
     endShape = endItem;
     setFlag(QGraphicsItem::ItemIsSelectable, true);
-    lineColor = Qt::green;
+    lineColor = Qt::black;
     setPen(QPen(lineColor, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 }
 

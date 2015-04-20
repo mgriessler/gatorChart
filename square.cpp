@@ -63,7 +63,7 @@ void Square::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
     font.setStyleStrategy(QFont::ForceOutline);
     painter->setFont(font);
     painter->save();
-    painter->drawText(20,20, dispText);
+    painter->drawText(20,40, dispText);
     painter->restore();
 
 }

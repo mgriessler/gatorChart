@@ -3,8 +3,8 @@
 
 #include <QColor>
 #include <QGraphicsItem>
-
-class Parallel : public QGraphicsItem
+#include "shape.h"
+class Parallel : public Shape
 {
 public:
     Parallel(const QColor &color, int x, int y);

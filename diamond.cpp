@@ -7,7 +7,7 @@ Diamond::Diamond(const QColor &color, int x, int y)
     this -> x = x;
     this -> y = y;
     this -> color = color;
-    this->dispText = "Trap";
+    this->dispText = "Diamond";
     setZValue((x + y) % 2);
 
     setFlags(ItemIsSelectable | ItemIsMovable);
@@ -76,7 +76,7 @@ void Diamond::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     font.setStyleStrategy(QFont::ForceOutline);
     painter->setFont(font);
     painter->save();
-    painter->drawText(20,20, dispText);
+    painter->drawText(10,50, dispText);
     painter->restore();
 }
 
