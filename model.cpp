@@ -5,6 +5,9 @@
 #include "oval.h"
 #include <iostream>
 #include <QGraphicsSceneMouseEvent>
+#include <QList>
+#include <QFile>
+
 
 /*********************************************************
  * the purpose of the model is to maintain all components that make up the flowchart
@@ -50,6 +53,29 @@ void model::create(QListWidgetItem *thing)
     }
     item->setPos(QPointF(100, 100));
     addItem(item);
+}
+void model::theSaveList()
+{
+    listActiveItems = items();
+    for(int i=0; i<listActiveItems.size(); i++)
+    {
+        std::cout<<listActiveItems[i]->type()<<std::endl;
+        std::cout<<"    "<<endl;
+    }
+
+
+
+
+    /*QFile file("flowchart.txt");
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
+    QTextStream out(&file);
+        out<<"Hello World I'm a flow chart software.";
+    file.close();
+    for(int i=0; i<listActiveItems.size(); i++)
+    {
+        out<<"Shape: "<<
+    }*/
 }
 
 void model::label()
@@ -118,3 +144,4 @@ void model::updateScene()
 {
     std::cout<<"update scene"<<std::endl;
 }
+

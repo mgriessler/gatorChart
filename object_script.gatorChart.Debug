@@ -1,0 +1,15 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\view.o
+./debug\square.o
+./debug\model.o
+./debug\arrow.o
+./debug\diagramitem.o
+./debug\trap.o
+./debug\diamond.o
+./debug\parallelogram.o
+./debug\oval.o
+./debug\moc_mainwindow.o
+./debug\moc_view.o
+);

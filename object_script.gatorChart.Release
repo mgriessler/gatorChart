@@ -1,0 +1,15 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\view.o
+./release\square.o
+./release\model.o
+./release\arrow.o
+./release\diagramitem.o
+./release\trap.o
+./release\diamond.o
+./release\parallelogram.o
+./release\oval.o
+./release\moc_mainwindow.o
+./release\moc_view.o
+);

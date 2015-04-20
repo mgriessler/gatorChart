@@ -117,8 +117,9 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     pointerModeGroup->addButton(dragModeButton);
     pointerModeGroup->addButton(addConnectorButton);
 
-    QToolButton *addSquareButton = new QToolButton;
-    addSquareButton->setText(tr("Square"));
+    saveButton = new QToolButton;
+    saveButton->setText(tr("Save"));
+    saveButton->setAutoRepeat(true);
 
 
 
@@ -164,6 +165,8 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     toolBar->addWidget(zoomInButton);
     toolBar->addWidget(zoomOutButton);
     toolBar->setAlignment(zoomOutButton, Qt::AlignLeft);
+    //
+    toolBar->addWidget(saveButton);
 
     QToolButton *rotateLeftIcon = new QToolButton;
     rotateLeftIcon->setIcon(QPixmap(":/rotateleft.png"));
@@ -261,9 +264,6 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
 
 
-
-
-
     //connect stuff
     //connect(color, SIGNAL(clicked()), this, SLOT(editColor()));
     connect(text, SIGNAL(clicked()), this, SLOT(addLabel()));
@@ -282,6 +282,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     connect(addConnectorButton, SIGNAL(clicked(bool)), this, SLOT(addConnector()));
     connect(zoomInButton, SIGNAL(clicked()), this, SLOT(zoomIn()));
     connect(zoomOutButton, SIGNAL(clicked()), this, SLOT(zoomOut()));
+    connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
 
     setupMatrix();
 }
@@ -320,6 +321,11 @@ void View::itemSel(QListWidgetItem *item)
     Model->create(item);
     return;
 }
+void View::save()
+{
+    Model->theSaveList();
+    return;
+}
 
 void View::keyPressEvent(QKeyEvent * event)
 {
@@ -342,22 +348,20 @@ void View::openFile()
 {
     QWidget *w = new QWidget;
     w->setWindowTitle("Tutorial");
-    QFile file("text.txt");
+    //QFile file("C:\\Users\\Dennis\\Desktop\\COP3503\\tutorial.txt");
+    QFile file("tutorial.txt");
     file.open(QIODevice::ReadOnly);
     QTextStream in(&file);
     QString line = in.readAll();
     QTextBrowser *content = new QTextBrowser;
     content->setText(line);
-    QGridLayout *t = new QGridLayout;
+    QHBoxLayout *t = new QHBoxLayout;
     w->setLayout(t);
-    t->addWidget(content,1,1);
+    t->addWidget(content);
     w->show();
 }
 
-void View::newChart(QGridLayout *topLayout)
-{
 
-}
 
 void View::editColor()
 {
