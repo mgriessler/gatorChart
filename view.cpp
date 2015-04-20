@@ -122,11 +122,8 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     pointerModeGroup->addButton(deleteButton);
     pointerModeGroup->addButton(addConnectorButton);
 
-    saveButton = new QToolButton;
-    saveButton->setText(tr("Save"));
-    saveButton->setAutoRepeat(true);
 
-    //Michelle
+    //List of shapes to choose from
     shapesList = new QListWidget();
     QListWidgetItem *square = new QListWidgetItem();
     QListWidgetItem *diamond = new QListWidgetItem();
@@ -304,7 +301,6 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     connect(addConnectorButton, SIGNAL(clicked(bool)), this, SLOT(addConnector()));
     connect(zoomInButton, SIGNAL(clicked()), this, SLOT(zoomIn()));
     connect(zoomOutButton, SIGNAL(clicked()), this, SLOT(zoomOut()));
-    connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
 
     setupMatrix();
 }
