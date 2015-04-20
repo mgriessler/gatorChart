@@ -224,11 +224,12 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
 
 
 
+
     QToolButton *text = new QToolButton;
-    text->setText(tr("Add Label"));
+    text->setText(tr("Edit"));
     //Adding widgets to myLayout
     myLayout->addWidget(label,0,1);
-     myLayout->addWidget(text, 3, 1);
+    myLayout->addWidget(text, 3, 1);
     myLayout->addWidget(colorLabel, 1, 1);
     myLayout->addWidget(combo,2,1);
 
@@ -358,7 +359,7 @@ void View::myClose()
 }
 
 
-void View::addLabel()
+void View::edit()
 {
 
     Model->setColor(combo->currentIndex());
@@ -384,10 +385,6 @@ void View::openFile()
 
 
 
-void View::editColor()
-{
-
-}
 
 
 QGraphicsView *View::view() const

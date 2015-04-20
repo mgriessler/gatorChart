@@ -69,8 +69,7 @@ private Q_SLOTS:
     void rotateRight();
 
     void myClose();
-    void editColor();
-    void addLabel();
+    void edit();
     void openFile();
     void addConnector();
 

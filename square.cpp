@@ -111,10 +111,6 @@ void Square::setColor(int n)
     {
         color = QColor(Qt::yellow);
     }
-    else if (n == 5)
-    {
-        color = QColor(Qt::black);
-    }
 
     editColor(this, color);
 }
