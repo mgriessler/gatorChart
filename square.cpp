@@ -20,31 +20,6 @@ void Square::editColor(Square *x, QColor c)
 {
    x->color = c;
 }
-/*
-void Square::popUpCombo()
-{
-
-    w = new QWidget;
-    w->setWindowTitle("Select Color");
-    t = new QHBoxLayout;
-    w->setLayout(t);
-    combo1 = new QComboBox;
-    combo1->addItem("blue");
-    combo1->addItem("red");
-    combo1->addItem("green");
-    combo1->addItem("gray");
-    combo1->addItem("yellow");
-    t->addWidget(combo1);
-    w->show();
-
-    b = new QToolButton;
-    b->setText("OK");
-    t->addWidget(b);
-
-    //connect(b, SIGNAL(triggered()), this, SLOT(openFile()));
-    //connect(b, SIGNAL(clicked()), this, SLOT(setColor()));
-
-}*/
 
 QRectF Square::boundingRect() const
 {

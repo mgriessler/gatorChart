@@ -78,10 +78,12 @@ void model::createOpenShape(qreal x, qreal y, QString shapeName)
     {
          item = new Diamond(color, 700, 700);
     }
-    else
+    else if((shapeName.compare(QString("Trapezoid")))==0)
     {
          item = new Trap(color, 700, 700);
     }
+    else
+        item = new Parallel(color, 700, 700);
     item->setPos(QPointF(x, y));
     addItem(item);
 }
@@ -133,8 +135,10 @@ void model::theSaveList()
             out<<"Oval ";
         else if(listActiveItems[i]->type() == 2)
             out<<"Diamond ";
-        else
+        else if(listActiveItems[i]->type() == 3)
             out<<"Trapezoid ";
+        else
+            out<<"Parallelogram ";
 
         out<<"( "<<listActiveItems[i]->pos().x()<<" , "<<listActiveItems[i]->pos().y()<<" ) ";
         out<<"\n";

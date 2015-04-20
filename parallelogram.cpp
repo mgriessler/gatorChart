@@ -14,14 +14,11 @@ Parallel::Parallel(const QColor &color, int x, int y)
 
 QRectF Parallel::boundingRect() const
 {
-//0,0,110,70 ???
     return QRectF(0, 0, 110, 70);
 }
 QPainterPath Parallel::shape() const
 {
     QPainterPath path;
-    //path.addPolygon();
-    path.addRect(14, 14, 82, 42);
     path.addRect(0, 0, 130, 80);
     return path;
 }
@@ -70,19 +67,6 @@ void Parallel::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     QPainterPath p;
     p.addRegion(poly);
     painter->fillPath(p,fillbrush);
-
-
-
-    //painter->drawLine(15, 54, 94, 54);
-    QFont font("Times", 10);
-    font.setStyleStrategy(QFont::ForceOutline);
-    painter->setFont(font);
-    painter->save();
-    painter->scale(1, 1);
-    painter->drawText(0, 0, QString("Start"));
-    painter->restore();
-
-
 }
 
 void Parallel::mousePressEvent(QGraphicsSceneMouseEvent *event)
