@@ -15,6 +15,7 @@ public:
     void test2();
     void addArrow(Arrow *arrow);
     void setDispText(QString text);
+    QString getDispText();
     void editColor(Shape *x, QColor);
     //void popUpCombo();
     void setColor(int n);

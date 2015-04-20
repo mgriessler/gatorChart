@@ -25,6 +25,11 @@ void Shape::setDispText(QString text)
     dispText = text;
 }
 
+QString Shape::getDispText()
+{
+    return dispText;
+}
+
 void Shape::editColor(Shape *x, QColor c)
 {
    std::cout<<"set color 2"<<std::endl;

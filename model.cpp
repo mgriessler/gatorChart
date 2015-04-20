@@ -10,6 +10,7 @@
 #include <QFile>
 #include <QString>
 #include <QStringList>
+#include "shape.h"
 
 /*********************************************************
  * the purpose of the model is to maintain all components that make up the flowchart
@@ -119,6 +120,7 @@ void model::theSaveList()
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
     QTextStream out(&file);
+    Shape *it;
     for(int i=0; i<listActiveItems.size(); i++)
     {
         if(listActiveItems[i]->type() == 0)
@@ -134,6 +136,8 @@ void model::theSaveList()
             out<<"Parallelogram ";
 
         out<<"( "<<listActiveItems[i]->pos().x()<<" , "<<listActiveItems[i]->pos().y()<<" ) ";
+        it = qgraphicsitem_cast<Shape*>(listActiveItems[i]);
+        out << "\"" << it->getDispText() << "\"";
         out<<"\n";
     }
     file.close();
