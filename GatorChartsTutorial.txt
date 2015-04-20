@@ -61,11 +61,9 @@ of your shapes: inside text, location on screen, and color.
 Gator Charts is also equipped to print your flow chart. It gets even
 better if you want to stop working on it now and come back later.
 You can save your flow chart and reload it again to keep working and 
-have everything saved. 
-If you need a more 
-If you need to make adjustments such as deleting shapes, no problem!
-Just right click and hit delete. Just make sure that it is not 
-attached to any arrows.
+have everything saved. If you need to make adjustments such as deleting 
+shapes, no problem! Just right click and hit delete. Just make sure that 
+it is not attached to any arrows.
 
 The tool bar for basic alterations of your shapes is located 
 at the top of the screne. To change to shape properties, click 
