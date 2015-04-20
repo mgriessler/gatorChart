@@ -6,8 +6,6 @@
 #include <QtWidgets>
 #include <QGraphicsItem>
 #include "shape.h"
-
-class Square : public Shape
 #include "view.h"
 
 class View;
@@ -22,7 +20,7 @@ QT_END_NAMESPACE
 
 
 
-class Square : public QGraphicsItem, public QObject
+class Square : public Shape, public QObject
 {
     //Q_OBJECT
 public:
