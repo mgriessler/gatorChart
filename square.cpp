@@ -59,7 +59,7 @@ void Square::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 void Square::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mousePressEvent(event);
-    std::cout <<"Start (" << this->pos().x() << ", " << this->pos().y() << ") ";
+    //std::cout <<"Start (" << this->pos().x() << ", " << this->pos().y() << ") ";
     update();
 }
 
@@ -78,7 +78,7 @@ void Square::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsItem::mouseReleaseEvent(event);
     QPointF p = this->pos();
     int gridSize = 40;
-    std::cout << " End (" << p.x() << ", " << p.y() << ") " << fmod(p.x() , gridSize) << std::endl;
+    //std::cout << " End (" << p.x() << ", " << p.y() << ") " << fmod(p.x() , gridSize) << std::endl;
     /*if(fmod(p.x(), gridSize) != 0)
         p.setX(p.x() + fmod(p.x(), gridSize));
     if(fmod(p.y(), gridSize) != 0)

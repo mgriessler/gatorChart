@@ -15,6 +15,7 @@ qtHaveModule(opengl): QT += opengl
 TARGET = gatorChart
 TEMPLATE = app
 
+CONFIG+= static
 
 SOURCES += main.cpp\
         mainwindow.cpp \

@@ -26,7 +26,7 @@
 */
 model::model()
 {
-    act = Action_MoveObject;
+    currentAction = Action_MoveObject;
 }
 
 void model::create(QListWidgetItem *thing)
@@ -57,6 +57,7 @@ void model::create(QListWidgetItem *thing)
 }
 void model::theSaveList()
 {
+
     listActiveItems = items();
     QFile file("flowchart.txt");
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -65,6 +66,7 @@ void model::theSaveList()
     for(int i=0; i<listActiveItems.size(); i++)
     {
         //std::cout<<listActiveItems[i]->type()<<std::endl;
+
 
         if(listActiveItems[i]->type() == 0)
             out<<"Shape: "<<"Square\n";
@@ -115,20 +117,35 @@ void model::itemHere(QMouseEvent *event)
 
 void model::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
+    std::cout<<"button pressed"<<std::endl;
     if (mouseEvent->button() != Qt::LeftButton) {
         std::cout << "not left key pressed" << std::endl;
         return;
     }
-    else
-    {
-        std::cout << "left key pressed" << std::endl;
-    }
+    std::cout << "left key pressed" << std::endl;
     std::cout << "(" << mouseEvent->scenePos().x() << "," << mouseEvent->scenePos().y() << ")" << std::endl;
-    std::cout <<act<<std::endl;
+    if(currentAction == Action_CreateLineStart)
+    {
+        QTransform trans;
+        if(itemAt(mouseEvent->scenePos(), trans))
+        {
+            std::cout<<"coords of item under cursor is: " << std::endl;
+        }
+        else
+        {
+            std::cout<<"no item here"<<std::endl;
+        }
+    }
+    std::cout <<"Action " << currentAction<<std::endl;
     QGraphicsScene::mousePressEvent(mouseEvent);
     return;
 }
 
+void model::setAction(DesiredAction action)
+{
+    std::cout<<"action set to " << action <<std::endl;
+    currentAction = action;
+}
 
 void model::updateScene()
 {
