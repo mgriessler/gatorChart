@@ -7,6 +7,7 @@ Oval::Oval(const QColor &color, int x,int y)
     this->x = x;
     this->y = y;
     this->color = color;
+    this->dispText = "Oval";
     setZValue((x + y) % 2);
     setFlags(ItemIsSelectable | ItemIsMovable);
     setAcceptHoverEvents(true);
@@ -56,9 +57,9 @@ void Oval::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     QFont font("Times", 10);
     font.setStyleStrategy(QFont::ForceOutline);
     painter->setFont(font);
-    //painter->save();
-    painter->drawText(20,20, QString("TEST TEXT"));
-    //painter->restore();
+    painter->save();
+    painter->drawText(20,20, dispText);
+    painter->restore();
 
 }
 void Oval::mousePressEvent(QGraphicsSceneMouseEvent *event)

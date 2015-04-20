@@ -3,8 +3,9 @@
 
 #include <QColor>
 #include <QGraphicsItem>
+#include "shape.h"
 
-class Trap : public QGraphicsItem
+class Trap : public Shape
 {
 public:
     Trap(const QColor &color, int x, int y);

@@ -19,3 +19,8 @@ void Shape::addArrow(Arrow *arrow)
 {
     arrows.append(arrow);
 }
+
+void Shape::setDispText(QString text)
+{
+    dispText = text;
+}

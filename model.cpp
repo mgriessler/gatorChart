@@ -121,7 +121,6 @@ void model::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         lineBeginItem = it;
         if(it != NULL)
         {
-            std::cout<<"coords of item1 under cursor is: (" << it->scenePos().x() << ", " << it->scenePos().y() << ")" << std::endl;
             it->test();
             currentAction = Action_CreateLineEnd;
         }
@@ -137,7 +136,6 @@ void model::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         lineEndItem = it;
         if(it != NULL)
         {
-            std::cout<<"coords of item2 under cursor is: (" << it->scenePos().x() << ", " << it->scenePos().y() << ")" << std::endl;
             it->test();
             currentAction = Action_CreateLineEnd;
         }

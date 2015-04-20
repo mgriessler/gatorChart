@@ -3,8 +3,9 @@
 
 #include <QColor>
 #include <QGraphicsItem>
+#include "shape.h"
 
-class Square : public QGraphicsItem
+class Square : public Shape
 {
 public:
     Square(const QColor &color, int x, int y);

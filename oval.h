@@ -4,6 +4,7 @@
 #include <QColor>
 #include <QGraphicsItem>
 #include "shape.h"
+#include <QString>
 
 class Oval : public Shape
 {
@@ -15,7 +16,6 @@ public:
     int type() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget) Q_DECL_OVERRIDE;
     int getID();
-
 
 
     protected:

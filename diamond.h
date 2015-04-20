@@ -3,8 +3,9 @@
 
 #include <QColor>
 #include <QGraphicsItem>
+#include "shape.h"
 
-class Diamond : public QGraphicsItem
+class Diamond : public Shape
 {
 public:
     Diamond(const QColor &color, int x, int y);
