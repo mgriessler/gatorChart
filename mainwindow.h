@@ -4,6 +4,8 @@
 #include <QWidget>
 #include "model.h"
 
+class model;
+
 QT_BEGIN_NAMESPACE
 class QGraphicsScene;
 QT_END_NAMESPACE

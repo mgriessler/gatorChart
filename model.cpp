@@ -6,6 +6,7 @@
 #include <iostream>
 #include <QGraphicsSceneMouseEvent>
 #include <QList>
+#include <QGraphicsItem>
 #include <QFile>
 
 
@@ -87,6 +88,13 @@ void model::label()
     QGraphicsItem *item = new Square(color, x, y);
     item->setPos(QPointF(100, 100));
     addItem(item);
+}
+
+void model::setColor(int c)
+{
+    QList<QGraphicsItem *> list = selectedItems();
+    Square *it = qgraphicsitem_cast<Square *>(list[0]);
+    it->setColor(c);
 }
 
 void model::createRect(QColor color, qreal x, qreal y)

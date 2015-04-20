@@ -23,6 +23,7 @@ public:
     void theSaveList();
     void itemHere(QMouseEvent *event);
     void setAction(DesiredAction action);
+    void setColor(int c);
 
 public Q_SLOTS:
     void shapeSelection();

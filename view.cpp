@@ -214,10 +214,12 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     //QToolButton *color = new QToolButton;
     //color->setText(tr("Edit Color"));
 
-    QComboBox *combo = new QComboBox;
+    combo = new QComboBox;
+    combo->addItem("blue");
     combo->addItem("red");
     combo->addItem("green");
-    combo->addItem("blue");
+    combo->addItem("gray");
+    combo->addItem("yellow");
 
 
 
@@ -340,7 +342,8 @@ void View::myClose()
 
 void View::addLabel()
 {
-    Model->label();
+
+    Model->setColor(combo->currentIndex());
 
 }
 

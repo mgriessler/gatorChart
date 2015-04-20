@@ -18,6 +18,7 @@ class QListWidget;
 QT_END_NAMESPACE
 
 class View;
+class model;
 
 class GraphicsView : public QGraphicsView
 {
@@ -45,6 +46,8 @@ public:
 
     QGraphicsView *view() const;
     model *Model;
+
+
 
     void keyPressEvent(QKeyEvent *event);
 
@@ -84,6 +87,8 @@ private:
     QLabel *label;
     QLabel *label2;
     QLabel *colorLabel;
+     QComboBox *combo;
+
 
     QToolButton *saveButton;
     QToolButton *selectModeButton;
