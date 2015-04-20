@@ -26,7 +26,6 @@ public:
     private:
         int x;
         int y;
-        QColor color;
         QVector<QPointF> stuff;
         //int UserType;
         int iD;

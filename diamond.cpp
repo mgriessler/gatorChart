@@ -52,8 +52,7 @@ void Diamond::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
      pen.setWidth(width);
      QBrush b = painter->brush();
-     painter->setBrush(QBrush(fillColor.dark(option->state & QStyle::State_Sunken ? 120 : 100)));
-
+     painter->setBrush(fillColor);
 
      painter->setPen(QPen(Qt::black, 1));
 
@@ -83,13 +82,6 @@ void Diamond::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
 void Diamond::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    if (event->button() == Qt::RightButton) {
-        //std::cout << "you right-clicked on Diamond" << std::endl;
-
-        //popUpCombo();
-        setColor(4);
-        return;
-    }
      QGraphicsItem::mousePressEvent(event);
      update();
 }

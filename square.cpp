@@ -8,6 +8,7 @@ Square::Square(const QColor &color, int x, int y)
     this->x = x;
     this->y = y;
     this->color = color;
+    this->dispText = "Square";
     setZValue((x + y) % 2);
 
     setFlags(ItemIsSelectable | ItemIsMovable);

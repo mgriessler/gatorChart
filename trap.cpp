@@ -82,7 +82,7 @@ void Trap ::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     painter->setFont(font);
     painter->save();
     painter->scale(1, 1);
-    painter->drawText(10, 10, dispText);
+    painter->drawText(30, 20, dispText);
     painter->restore();
 
 }
