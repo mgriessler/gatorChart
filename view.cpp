@@ -121,25 +121,26 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     saveButton->setText(tr("Save"));
     saveButton->setAutoRepeat(true);
 
-
-
     //Michelle
     shapesList = new QListWidget();
     QListWidgetItem *square = new QListWidgetItem();
     QListWidgetItem *diamond = new QListWidgetItem();
     QListWidgetItem *trapezoid = new QListWidgetItem();
     QListWidgetItem *oval = new QListWidgetItem();
+    QListWidgetItem *parallelogram = new QListWidgetItem();
 
     square->setText("square");
     diamond->setText("diamond");
     trapezoid->setText("trapezoid");
     oval->setText("oval");
+    parallelogram->setText("parallelogram");
 
 
     shapesList->insertItem(2, square);
     shapesList->insertItem(3, diamond);
     shapesList->insertItem(4, trapezoid);
     shapesList->insertItem(5, oval);
+    shapesList->insertItem(6, parallelogram);
 
     QLabel *shapesListLabel = new QLabel(tr("<b>Insert Shape</b>"));
 

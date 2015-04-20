@@ -1,4 +1,4 @@
-/*#include "parallelogram.h"
+#include "parallelogram.h"
 #include <QtWidgets>
 
 Parallel::Parallel(const QColor &color, int x, int y)
@@ -20,7 +20,7 @@ QRectF Parallel::boundingRect() const
 QPainterPath Parallel::shape() const
 {
     QPainterPath path;
-    path.addPolygon()
+    //path.addPolygon();
     path.addRect(14, 14, 82, 42);
     path.addRect(0, 0, 130, 80);
     return path;
@@ -70,9 +70,9 @@ void Parallel::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     QPainterPath p;
     p.addRegion(poly);
     painter->fillPath(p,fillbrush);
-*/
 
-    /*
+
+
     //painter->drawLine(15, 54, 94, 54);
     QFont font("Times", 10);
     font.setStyleStrategy(QFont::ForceOutline);
@@ -81,8 +81,8 @@ void Parallel::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     painter->scale(1, 1);
     painter->drawText(0, 0, QString("Start"));
     painter->restore();
-    */
-/*
+
+
 }
 
 void Parallel::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -101,10 +101,15 @@ void Parallel::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsItem::mouseMoveEvent(event);
 }
 
+int Parallel::type() const
+{
+    return 4;
+}
+
 void Parallel::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseReleaseEvent(event);
     update();
 }
 
-*/
+

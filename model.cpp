@@ -10,6 +10,7 @@
 #include <QFile>
 #include <QString>
 #include <QStringList>
+#include <QFileDialog>
 
 /*********************************************************
  * the purpose of the model is to maintain all components that make up the flowchart
@@ -20,7 +21,7 @@
  * then the model tells the view to update
  * and the cycle continues
  * to reiterate: to add a shape to the view, it is not directly added to the view, but it is added to the model and the model changes the view
- * Functions provided by the model (CMD or Commands) - yes I came up with that myself, yes, I'm proud of it
+ * Functions provided by the model (CMD or Commands)
  * Create - add items to the view
  * Manipulate - change items in the view
  * Delete - remove items from the view
@@ -48,6 +49,10 @@ void model::create(QListWidgetItem *thing)
     else if(thing->text() == "diamond")
     {
          item = new Diamond(color, x, y);
+    }
+    else if(thing->text() == "parallelogram")
+    {
+        item = new Parallel(color, x, y);
     }
     else
     {
@@ -83,7 +88,12 @@ void model::createOpenShape(qreal x, qreal y, QString shapeName)
 
 void model::openNewApplication()
 {
-    QFile file("flowchart.txt");
+    QFileDialog dialog;
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    QStringList fileNamer;
+    if (dialog.exec())
+        fileNamer = dialog.selectedFiles();
+   QFile file(fileNamer[0]);
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
     QTextStream in(&file);
@@ -104,9 +114,14 @@ void model::openNewApplication()
 
 void model::theSaveList()
 {
-    std::cout<<"You have reached theSaveList() level";
+    QFileDialog dialog;
+    dialog.setFileMode(QFileDialog::AnyFile);
+    QStringList fileNames;
+    if (dialog.exec())
+        fileNames = dialog.selectedFiles();
+
     listActiveItems = items();
-    QFile file("flowchart.txt");
+    QFile file(fileNames[0]);
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
     QTextStream out(&file);
