@@ -21,8 +21,10 @@ public:
     void createRect(QColor color, qreal x, qreal y);
     void updateScene();
     void theSaveList();
+    void openNewApplication();
     void itemHere(QMouseEvent *event);
     void setAction(DesiredAction action);
+    void createOpenShape(qreal x, qreal y, QString shapeName);
 
 public Q_SLOTS:
     void shapeSelection();
@@ -31,7 +33,6 @@ protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
 
 private:
-    QGraphicsItem *items[10];
     DesiredAction currentAction;
 };
 
