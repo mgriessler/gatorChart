@@ -303,6 +303,7 @@ void View::itemSel(QListWidgetItem *item)
 void View::save()
 {
     Model->theSaveList();
+    std::cout<<"You are saving"<<std::endl;
     return;
 }
 

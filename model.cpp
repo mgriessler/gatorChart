@@ -7,6 +7,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QList>
 #include <QFile>
+#include <QString>
 
 
 /*********************************************************
@@ -57,25 +58,29 @@ void model::create(QListWidgetItem *thing)
 void model::theSaveList()
 {
     listActiveItems = items();
-    for(int i=0; i<listActiveItems.size(); i++)
-    {
-        std::cout<<listActiveItems[i]->type()<<std::endl;
-        std::cout<<"    "<<endl;
-    }
-
-
-
-
-    /*QFile file("flowchart.txt");
+    QFile file("flowchart.txt");
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
     QTextStream out(&file);
-        out<<"Hello World I'm a flow chart software.";
-    file.close();
     for(int i=0; i<listActiveItems.size(); i++)
     {
-        out<<"Shape: "<<
-    }*/
+        //std::cout<<listActiveItems[i]->type()<<std::endl;
+
+        if(listActiveItems[i]->type() == 0)
+            out<<"Shape: "<<"Square\n";
+        else if(listActiveItems[i]->type() == 1)
+            out<<"Shape: "<<"Oval\n";
+        else if(listActiveItems[i]->type() == 2)
+            out<<"Shape: "<<"Diamond\n";
+        else
+            out<<"Shape: "<<"Trapezoid\n";
+
+
+        out<<"Coordinates: ";
+        out<<"( "<<listActiveItems[i]->pos().x()<<", "<<listActiveItems[i]->pos().y()<<")";
+        out<<"\n";
+    }
+    file.close();
 }
 
 void model::label()

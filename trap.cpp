@@ -13,7 +13,10 @@ Trap ::Trap (const QColor &color, int x, int y)
     setFlags(ItemIsSelectable | ItemIsMovable);
     setAcceptHoverEvents(true);
 }
-
+int Trap::type() const
+{
+    return 3;
+}
 QRectF Trap ::boundingRect() const
 {
     //window location

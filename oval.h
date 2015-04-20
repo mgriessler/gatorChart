@@ -12,7 +12,11 @@ public:
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;
+    int type() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget) Q_DECL_OVERRIDE;
+    int getID();
+
+
 
     protected:
         void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
@@ -24,6 +28,8 @@ public:
         int y;
         QColor color;
         QVector<QPointF> stuff;
+        //int UserType;
+        int iD;
 };
 
 #endif // OVAL_H

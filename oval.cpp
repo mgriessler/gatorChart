@@ -8,7 +8,6 @@ Oval::Oval(const QColor &color, int x,int y)
     this->y = y;
     this->color = color;
     setZValue((x + y) % 2);
-
     setFlags(ItemIsSelectable | ItemIsMovable);
     setAcceptHoverEvents(true);
 }
@@ -19,7 +18,10 @@ QRectF Oval::boundingRect() const
     return QRectF(0,0,90,40);
 
 }
-
+int Oval::type() const
+{
+    return 1;
+}
 QPainterPath Oval::shape() const
 {
     QPainterPath path;
