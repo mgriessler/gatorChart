@@ -92,6 +92,10 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     dragModeButton->setText(tr("Drag"));
     dragModeButton->setCheckable(true);
     dragModeButton->setChecked(false);
+    deleteButton = new QToolButton;
+    deleteButton->setText(tr("Delete"));
+    deleteButton->setCheckable(true);
+    deleteButton->setChecked(false);
     addConnectorButton = new QToolButton;
     addConnectorButton->setText(tr("Connector"));
     addConnectorButton->setCheckable(true);
@@ -115,6 +119,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     pointerModeGroup->setExclusive(true);
     pointerModeGroup->addButton(selectModeButton);
     pointerModeGroup->addButton(dragModeButton);
+    pointerModeGroup->addButton(deleteButton);
     pointerModeGroup->addButton(addConnectorButton);
 
     saveButton = new QToolButton;
@@ -158,6 +163,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     toolBar->setAlignment(pointerMode, Qt::AlignRight);
     toolBar->addWidget(selectModeButton);
     toolBar->addWidget(dragModeButton);
+    toolBar->addWidget(deleteButton);
     toolBar->addWidget(addConnectorButton);
     toolBar->setAlignment(addConnectorButton, Qt::AlignLeft);
     toolBar->addWidget(zoomLabel);
@@ -293,6 +299,7 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
             this, SLOT(setResetButtonEnabled()));
     connect(selectModeButton, SIGNAL(clicked(bool)), this, SLOT(selectMode()));
     connect(dragModeButton, SIGNAL(clicked(bool)), this, SLOT(dragMode()));
+    connect(deleteButton, SIGNAL(clicked(bool)), this, SLOT(deleteMode()));
     connect(addConnectorButton, SIGNAL(clicked(bool)), this, SLOT(addConnector()));
     connect(zoomInButton, SIGNAL(clicked()), this, SLOT(zoomIn()));
     connect(zoomOutButton, SIGNAL(clicked()), this, SLOT(zoomOut()));
@@ -427,6 +434,14 @@ void View::selectMode()
     Model->setAction(model::Action_MoveObject);
     graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
     graphicsView->setInteractive(selectModeButton->isChecked());
+}
+
+void View::deleteMode()
+{
+    std::cout<<"Delete button"<<std::endl;
+    Model->setAction(model::Action_Delete);
+    graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
+    graphicsView->setInteractive(true);
 }
 
 void View::addConnector()

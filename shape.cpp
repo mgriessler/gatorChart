@@ -24,3 +24,4 @@ void Shape::setDispText(QString text)
 {
     dispText = text;
 }
+

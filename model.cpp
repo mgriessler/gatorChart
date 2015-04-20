@@ -208,6 +208,15 @@ void model::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         }
         currentAction = Action_MoveObject;
     }
+    else if(currentAction == Action_Delete)
+    {
+        foreach(QGraphicsItem *item, selectedItems())
+        {
+            //qgraphicsitem_cast<Shape *>(item)->removeArrows();
+            removeItem(item);
+            delete item;
+        }
+    }
     std::cout <<"Action " << currentAction<<std::endl;
     QGraphicsScene::mousePressEvent(mouseEvent);
     return;

@@ -34,10 +34,6 @@ void Oval::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 {
     Q_UNUSED(widget);
 
-    /*QColor fillColor = (option->state & QStyle::State_Selected) ? color.dark(150) : color;
-    if (option->state & QStyle::State_MouseOver)
-        fillColor = fillColor.light(125);
-*/
     QColor fillColor = color;
     QPen oldPen = painter->pen();
     QPen pen = oldPen;

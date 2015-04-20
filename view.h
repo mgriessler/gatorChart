@@ -72,6 +72,7 @@ private Q_SLOTS:
     void edit();
     void openFile();
     void addConnector();
+    void deleteMode();
 
 
 private:
@@ -97,6 +98,7 @@ private:
     QToolButton *saveButton;
     QToolButton *selectModeButton;
     QToolButton *dragModeButton;
+    QToolButton *deleteButton;
     QToolButton *antialiasButton;
     QToolButton *resetButton;
     QToolButton *addConnectorButton;
