@@ -49,6 +49,10 @@ void model::create(QListWidgetItem *thing)
     {
          item = new Diamond(color, x, y);
     }
+    else if(thing->text() == "parallelogram")
+    {
+        item = new Parallel(color, x, y);
+    }
     else
     {
          item = new Trap(color, x, y);
@@ -73,6 +77,11 @@ void model::createOpenShape(qreal x, qreal y, QString shapeName)
     {
          item = new Diamond(color, 700, 700);
     }
+    else if((shapeName.compare(QString("Parallelogram")))==0)
+    {
+         item = new Parallel(color, 700, 700);
+    }
+
     else
     {
          item = new Trap(color, 700, 700);
@@ -118,8 +127,11 @@ void model::theSaveList()
             out<<"Oval ";
         else if(listActiveItems[i]->type() == 2)
             out<<"Diamond ";
-        else
+        else if(listActiveItems[i]->type() == 3)
             out<<"Trapezoid ";
+
+        else
+            out<<"Parallelogram ";
 
         out<<"( "<<listActiveItems[i]->pos().x()<<" , "<<listActiveItems[i]->pos().y()<<" ) ";
         out<<"\n";
