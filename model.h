@@ -23,7 +23,14 @@ public:
     void createRect(QColor color, qreal x, qreal y);
     void updateScene();
     void theSaveList();
+    void openNewApplication();
+
     void setAction(DesiredAction action);
+
+    void setColor(int c);
+
+    void createOpenShape(qreal x, qreal y, QString shapeName);
+
 
 public Q_SLOTS:
     void shapeSelection();

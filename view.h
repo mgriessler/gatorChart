@@ -18,6 +18,7 @@ class QListWidget;
 QT_END_NAMESPACE
 
 class View;
+class model;
 
 class GraphicsView : public QGraphicsView
 {
@@ -46,6 +47,8 @@ public:
     QGraphicsView *view() const;
     model *Model;
 
+
+
     void keyPressEvent(QKeyEvent *event);
 
 public Q_SLOTS:
@@ -53,6 +56,7 @@ public Q_SLOTS:
     void itemSel(QListWidgetItem *item);
     void save();
     void zoomOut(int level = 1);
+    void open();
 
 private Q_SLOTS:
     void print();
@@ -70,20 +74,26 @@ private Q_SLOTS:
     void openFile();
     void addConnector();
 
+
 private:
     GraphicsView *graphicsView;
     QMenuBar *menu_bar;
     QMenu *menu;
     QMenu *menu2;
     QMenu *menu3;
+    QMenu *menu4;
     //QFile *file;
     QAction *exitAction;
     QAction *newAction;
     QAction *printAction;
     QAction *helpAction;
+    QAction *saveAction;
+    QAction *openAction;
     QLabel *label;
     QLabel *label2;
     QLabel *colorLabel;
+     QComboBox *combo;
+
 
     QToolButton *saveButton;
     QToolButton *selectModeButton;

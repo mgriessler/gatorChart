@@ -6,9 +6,10 @@
 #include <iostream>
 #include <QGraphicsSceneMouseEvent>
 #include <QList>
+#include <QGraphicsItem>
 #include <QFile>
 #include <QString>
-
+#include <QStringList>
 
 /*********************************************************
  * the purpose of the model is to maintain all components that make up the flowchart
@@ -35,7 +36,7 @@ void model::create(QListWidgetItem *thing)
     QColor color(QColor(Qt::red));
     qreal x = 700;
     qreal y = 700;
-   QGraphicsItem *item;
+    QGraphicsItem *item;
     if(thing->text() == "square")
     {
          item = new Square(color, x, y);
@@ -55,9 +56,55 @@ void model::create(QListWidgetItem *thing)
     item->setPos(QPointF(100, 100));
     addItem(item);
 }
+void model::createOpenShape(qreal x, qreal y, QString shapeName)
+{
+    QGraphicsItem *item;
+    QColor color(QColor(Qt::red));
+    std::cout<<shapeName.toStdString()<<std::endl;
+    if((shapeName.compare(QString("Square")))==0)
+    {
+         item = new Square(color, 700, 700);
+    }
+    else if((shapeName.compare(QString("Oval")))==0)
+    {
+         item = new Oval(color, 700, 700);
+    }
+    else if((shapeName.compare(QString("Diamond")))==0)
+    {
+         item = new Diamond(color, 700, 700);
+    }
+    else
+    {
+         item = new Trap(color, 700, 700);
+    }
+    item->setPos(QPointF(x, y));
+    addItem(item);
+}
+
+void model::openNewApplication()
+{
+    QFile file("flowchart.txt");
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+    QTextStream in(&file);
+    while(!in.atEnd())
+    {
+        QString line = in.readLine();
+        std::cout<<line.toStdString()<<std::endl;
+        QStringList itemsInLine = line.split(" ");
+        QString x = itemsInLine[2];
+        QString y = itemsInLine[4];
+        QString shape = itemsInLine[0];
+
+        qreal realx = x.toInt();
+        qreal realy = y.toInt();
+        createOpenShape(realx,realy,shape);
+    }
+}
+
 void model::theSaveList()
 {
-
+    std::cout<<"You have reached theSaveList() level";
     listActiveItems = items();
     QFile file("flowchart.txt");
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -65,21 +112,16 @@ void model::theSaveList()
     QTextStream out(&file);
     for(int i=0; i<listActiveItems.size(); i++)
     {
-        //std::cout<<listActiveItems[i]->type()<<std::endl;
-
-
         if(listActiveItems[i]->type() == 0)
-            out<<"Shape: "<<"Square\n";
+            out<<"Square ";
         else if(listActiveItems[i]->type() == 1)
-            out<<"Shape: "<<"Oval\n";
+            out<<"Oval ";
         else if(listActiveItems[i]->type() == 2)
-            out<<"Shape: "<<"Diamond\n";
+            out<<"Diamond ";
         else
-            out<<"Shape: "<<"Trapezoid\n";
+            out<<"Trapezoid ";
 
-
-        out<<"Coordinates: ";
-        out<<"( "<<listActiveItems[i]->pos().x()<<", "<<listActiveItems[i]->pos().y()<<")";
+        out<<"( "<<listActiveItems[i]->pos().x()<<" , "<<listActiveItems[i]->pos().y()<<" ) ";
         out<<"\n";
     }
     file.close();
@@ -94,6 +136,13 @@ void model::label()
     QGraphicsItem *item = new Square(color, x, y);
     item->setPos(QPointF(100, 100));
     addItem(item);
+}
+
+void model::setColor(int c)
+{
+    QList<QGraphicsItem *> list = selectedItems();
+    Square *it = qgraphicsitem_cast<Square *>(list[0]);
+    it->setColor(c);
 }
 
 void model::createRect(QColor color, qreal x, qreal y)

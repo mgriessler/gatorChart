@@ -1,4 +1,5 @@
 #include "square.h"
+#include "view.h"
 #include <iostream>
 #include <QtWidgets>
 
@@ -11,7 +12,39 @@ Square::Square(const QColor &color, int x, int y)
 
     setFlags(ItemIsSelectable | ItemIsMovable);
     setAcceptHoverEvents(true);
+
+
 }
+
+void Square::editColor(Square *x, QColor c)
+{
+   x->color = c;
+}
+/*
+void Square::popUpCombo()
+{
+
+    w = new QWidget;
+    w->setWindowTitle("Select Color");
+    t = new QHBoxLayout;
+    w->setLayout(t);
+    combo1 = new QComboBox;
+    combo1->addItem("blue");
+    combo1->addItem("red");
+    combo1->addItem("green");
+    combo1->addItem("gray");
+    combo1->addItem("yellow");
+    t->addWidget(combo1);
+    w->show();
+
+    b = new QToolButton;
+    b->setText("OK");
+    t->addWidget(b);
+
+    //connect(b, SIGNAL(triggered()), this, SLOT(openFile()));
+    //connect(b, SIGNAL(clicked()), this, SLOT(setColor()));
+
+}*/
 
 QRectF Square::boundingRect() const
 {
@@ -55,9 +88,49 @@ void Square::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
     painter->setPen(QPen(Qt::black, 0));
 
 }
+void Square::setColor(int n)
+{
+
+    if (n == 0)
+    {
+        color = QColor(Qt::blue);
+    }
+    else if (n == 1)
+    {
+        color = QColor(Qt::red);
+    }
+    else if(n == 2)
+    {
+        color = QColor(Qt::green);
+    }
+    else if (n == 3)
+    {
+        color = QColor(Qt::gray);
+    }
+    else if (n == 4)
+    {
+        color = QColor(Qt::yellow);
+    }
+    else if (n == 5)
+    {
+        color = QColor(Qt::black);
+    }
+
+    editColor(this, color);
+}
+
 
 void Square::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
+
+    if (event->button() == Qt::RightButton) {
+        std::cout << "you right-clicked on Square" << std::endl;
+
+        //popUpCombo();
+        //setColor();
+        return;
+    }
+
     QGraphicsItem::mousePressEvent(event);
     //std::cout <<"Start (" << this->pos().x() << ", " << this->pos().y() << ") ";
     update();

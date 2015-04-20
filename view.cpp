@@ -214,10 +214,12 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     //QToolButton *color = new QToolButton;
     //color->setText(tr("Edit Color"));
 
-    QComboBox *combo = new QComboBox;
+    combo = new QComboBox;
+    combo->addItem("blue");
     combo->addItem("red");
     combo->addItem("green");
-    combo->addItem("blue");
+    combo->addItem("gray");
+    combo->addItem("yellow");
 
 
 
@@ -244,6 +246,11 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     connect(newAction, SIGNAL(triggered()), this, SLOT(resetView()));
     menu->addAction(newAction);
 
+    openAction = new QAction(tr("Open"),this);
+    connect(openAction, SIGNAL(triggered()), this, SLOT(open()));
+    menu->addAction(openAction);
+
+
     //Print Menu Actions
     menu2 = menu_bar->addMenu("Print");
     printAction = new QAction(tr("Print"), this);
@@ -255,6 +262,12 @@ View::View(const QString &name, model *Mod, QWidget *parent) : QFrame(parent)
     helpAction = new QAction(tr("Tutorial"), this);
     connect(helpAction, SIGNAL(triggered()), this, SLOT(openFile()));
     menu3->addAction(helpAction);
+
+    //Save Menu Actions
+    menu4 = menu_bar->addMenu("Save");
+    saveAction = new QAction(tr("Save"),this);
+    connect(saveAction, SIGNAL(triggered()),this,SLOT(save()));
+    menu4->addAction(saveAction);
 
     topLayout->addWidget(menu_bar, 0, 0, 1, 1);
 
@@ -327,6 +340,12 @@ void View::save()
     std::cout<<"You are saving"<<std::endl;
     return;
 }
+void View::open()
+{
+    std::cout<<"You are opening a new file"<<std::endl;
+    Model->openNewApplication();
+    return;
+}
 
 void View::keyPressEvent(QKeyEvent * event)
 {
@@ -341,7 +360,8 @@ void View::myClose()
 
 void View::addLabel()
 {
-    Model->label();
+
+    Model->setColor(combo->currentIndex());
 
 }
 
